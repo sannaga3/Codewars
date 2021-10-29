@@ -1,3 +1,4 @@
+# no.1
 # 6kyu Create Phone Number
 
 # def create_phone_number(numbers)
@@ -22,7 +23,7 @@
 
 # --------------------------------------------------------------------------------------------------
 
-
+# no.2
 # 7kyu Vowel Count
 
 # def get_count(input_str)
@@ -40,7 +41,7 @@
 
 # --------------------------------------------------------------------------------------------------
 
-
+# no.3
 # 7kyu Beginner Series #3 Sum of Numbers
 
 # def get_sum(a, b)
@@ -61,6 +62,7 @@
 
 # --------------------------------------------------------------------------------------------------
 
+# no.4
 # 7kyu Square Every Digit
 
 # def square_digits num
@@ -75,7 +77,7 @@
 # square_digits(1111)
 
 
-# 間違えたやつ  各桁の数値に0を補い、桁の数値を掛けたものを合計する 321 => 300x3 + 20x2 + 1x1
+# 間違えた回答  各桁の数値に0を補い、桁の数値を掛けたものを合計する 321 => 300x3 + 20x2 + 1x1
 # number_elements = num.to_s.chars
 # number_digit = number_elements.length
 # each_digit_number_exponentiation = ""
@@ -90,4 +92,88 @@
 
 # --------------------------------------------------------------------------------------------------
 
+# no.5
+# 8kyu Twice as old
 
+# def twice_as_old(dad, son)
+#   difference_of_age = (dad - son * 2).abs
+# end
+
+# p twice_as_old(36, 7) == 22
+# p twice_as_old(55, 30) == 5
+# p twice_as_old(22, 1) == 20
+# p twice_as_old(29, 0) == 29
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.6
+# 8kyu Array plus array
+
+# def array_plus_array(arr1, arr2)
+#   (arr1 + arr2).inject(:+)
+# end
+
+# p array_plus_array([1, 2, 3], [4, 5, 6]) == 21
+# p array_plus_array([-1, -2, -3], [-4, -5, -6]) == -21
+# p array_plus_array([0, 0, 0], [4, 5, 6]) == 15
+# p array_plus_array([100, 200, 300], [400, 500, 600]) == 2100
+
+# (arr1 + arr2).sumが一番簡単
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.7
+# 8kyu Opposites Attract
+
+# def lovefunc(flower1, flower2)
+#   flower1.even? && flower2.odd? || flower1.odd? && flower2.even?
+# end
+
+# p lovefunc(1,4) == true
+# p lovefunc(2,2) == false
+# p lovefunc(0,1) == true
+# p lovefunc(0,0) == false
+# p lovefunc(5,5) == false
+
+# (flower1 + flower2).odd? が一番短い
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.8
+# 8kyu Counting sheep...
+
+# def countSheeps array
+#   array.count(true)
+# end
+
+# array1 = [true,  true,  true,  false,
+#   true,  true,  true,  true ,
+#   true,  false, true,  false,
+#   true,  false, false, true ,
+#   true,  true,  true,  true ,
+#   false, false, true,  true ]
+
+# p countSheeps(array1) ==  17
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.9
+# 7kyu Sort Numbers
+
+# def solution(nums)
+#   return [] if !nums || nums.empty?
+#   nums.sort
+# end
+
+# p solution([1, 2, 3, 10, 5]) == [1, 2, 3, 5, 10]
+# p solution(nil) == []
+# p solution([]) == []
+# p solution([20, 2, 10]) == [2, 10, 20]
+
+# Array(nums).sortが一番短い
+
+# --------------------------------------------------------------------------------------------------
