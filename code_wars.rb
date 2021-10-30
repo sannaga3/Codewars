@@ -249,7 +249,6 @@
 #   uniq_array.each do |number|
 #     return number if numbers.count(number) == 1
 #   end
-#   numbers.find { |n| p numbers.one? n }
 # end
 
 # p stray([1, 1, 2]) == 2
@@ -260,6 +259,7 @@
 # numbers.find { |n| numbers.one? n } 一番短い？
 # numbers.each { |n| numbers.one? n } では配列の要素全てを検証するが、.findの場合はtrueになった時点でループを抜ける
 # .one?メソッドは引数が配列の中で一意であればtrueを返す
+
 
 # --------------------------------------------------------------------------------------------------
 
@@ -358,4 +358,140 @@
 # --------------------------------------------------------------------------------------------------
 
 # no.19
-# 7kyu
+# 7kyu Mumbling
+
+# def accum(s)
+#   result = ''
+#   s.chars.each_with_index { |str, i| result += "#{str.upcase}#{(str.downcase) * i }-"}
+#   result.chop
+# end
+
+# p accum("ZpglnRxqenU") == "Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu"
+# p accum("HbideVbxncC") == "H-Bb-Iii-Dddd-Eeeee-Vvvvvv-Bbbbbbb-Xxxxxxxx-Nnnnnnnnn-Cccccccccc-Ccccccccccc"
+
+# s.chars.each_with_index.map{ |c, i| c.upcase + c.downcase * i }.join('-') 一番短い？ 上記の方が繰り返しは少ない。
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.20
+# 7kyu Ones and Zeros
+
+# def binary_array_to_number(arr)
+#   arr.reverse.each_with_index.map {|k, v| k * 2 ** v }.sum
+# end
+
+# binary_array_to_number([0,0,0,1]) == 1
+# binary_array_to_number([0,0,1,0]) == 2
+# binary_array_to_number([0,1,1,0]) == 6
+
+# arr.join("").to_i(2) 一番簡単。to_iメソッドは引数をn進数として文字列から変換する
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.21
+# 7kyu Descending Order
+
+# def descending_order(n)
+  # n.to_s.chars.sort.reverse.join.to_i
+# end
+
+# p descending_order(0) == 0
+# p descending_order(1) == 1
+# p descending_order(145263) == 654321
+# p descending_order(123456789) == 987654321
+
+# n.digits.sort.reverse.join.to_i  一番簡単。 .digitsメソッドで各桁を数値のまま配列に格納する
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.22
+# 7kyu Round up to the next multiple of 5
+
+# def round_to_next_5(n)
+#   while (n % 5) != 0 do
+#     n += 1
+#   end
+#   n
+# end
+
+# p round_to_next_5(0) == 0
+# p round_to_next_5(1) == 5
+# p round_to_next_5(5) == 5
+# p round_to_next_5(16) == 20
+
+# 色々と短い書き方があった
+# n % 5 == 0 ? n : (n/5 + 1) * 5
+# n / -5 * -5  引数が正の数という縛りがある為有効。n / 5 * 5 では５の倍数の一番近い値に四捨五入されてしまう。n / 5 * 5 => 15
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.23
+# 7kyu Breaking chocolate problem
+
+# def break_chocolate(n, m)
+#   return 0 if n * m == 0
+#   n * m -1
+# end
+
+# p break_chocolate(5, 5) == 24
+# p break_chocolate(7, 4) == 27
+# p break_chocolate(1, 1) == 0
+# p break_chocolate(0, 0) == 0
+
+# n == 0 || m == 0 ? 0 : n * m - 1 が一番短い
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.24
+# 7kyu Sum of angles
+
+# def angle(n)
+#   n < 3 ? 0 : n == 3 ? 180 : (n - 2) * 180
+# end
+
+# p angle(3) == 180
+# p angle(4) == 360
+# p angle(5) == 540
+
+# 180 * (n - 2) が一番短い
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.25
+# 7kyu Summing a number's digits
+
+# def sum_digits(number)
+#   number.abs.digits.sum
+# end
+
+# p sum_digits(10) == 1
+# p sum_digits(99) == 18
+# p sum_digits(-32) == 5
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.26
+# 7kyu Get the Middle Character
+
+# def get_middle(s)
+#   length = s.length
+#   length.odd? ? s[length / 2] : "#{s[length / 2 - 1]}#{s[length / 2]}"
+# end
+
+# p get_middle("test") == "es"
+# p get_middle("testing") == "t"
+# p get_middle("middle") == "dd"
+# p get_middle("A") == "A"
+# p get_middle("of") == "of"
+
+# s[(s.size-1)/2..s.size/2] 一番短い
+
+
+# --------------------------------------------------------------------------------------------------
