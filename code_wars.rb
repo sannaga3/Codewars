@@ -96,7 +96,7 @@
 # 8kyu Twice as old
 
 # def twice_as_old(dad, son)
-#   difference_of_age = (dad - son * 2).abs
+#   (dad - son * 2).abs
 # end
 
 # p twice_as_old(36, 7) == 22
@@ -177,3 +177,185 @@
 # Array(nums).sortが一番短い
 
 # --------------------------------------------------------------------------------------------------
+
+# no.10
+# 7kyu Two Oldest Ages
+
+# def two_oldest_ages(ages)
+#   ages.sort.last(2)
+# end
+
+# p two_oldest_ages([1, 3, 10, 0]) == [3, 10]
+# p two_oldest_ages([6, 5, 83, 5, 3, 18]) == [83, 18]
+
+# ages.max(2).sort でもOK。こっちの方が使いやすいかも。
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.11
+# 7kyu Flatten and sort an array
+
+# def flatten_and_sort(array)
+#   Array(array).sum([]).sort
+# end
+
+# p flatten_and_sort([[], []]) == []
+# p flatten_and_sort([[3, 2, 1], [7, 9, 8], [6, 4, 5]]) == ([1, 2, 3, 4, 5, 6, 7, 8, 9])
+# p flatten_and_sort([[-9, -8, -7, -6, -5, -4, -3, -2, -1]]) == ([-9, -8, -7, -6, -5, -4, -3, -2, -1])
+
+# array.flatten.sortが一番短い
+# flattenメソッド・・・n次元配列が１次元浅くなるように要素を足す。
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.12
+# 7kyu Shortest Word
+
+# def find_short(s)
+#   s.split(' ').map{ |st| st.length }.min
+# end
+
+# p find_short("bitcoin take over the world maybe who knows perhaps") == 3
+# p find_short("i want to travel the world writing code one day") == 1
+
+# s.split.map(&:size).min が一番短い
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.13
+# 7kyu Two to One
+
+# def longest(a1, a2)
+#   (a1 + a2).split('').uniq.sort.join
+# end
+
+# p longest("aretheyhere", "yestheyarehere") == "aehrsty"
+# p longest("loopingisfunbutdangerous", "lessdangerousthancoding") == "abcdefghilnoprstu"
+
+# (a1+a2).chars.uniq.sort.join でもOK
+# .charsの方が.split('')より適した使い方かもしれない
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.14
+# 7kyu Find the stray number
+
+# def stray (numbers)
+#   uniq_array = numbers.uniq
+#   uniq_array.each do |number|
+#     return number if numbers.count(number) == 1
+#   end
+#   numbers.find { |n| p numbers.one? n }
+# end
+
+# p stray([1, 1, 2]) == 2
+# p stray([17, 17, 3, 17]) == 3
+# p stray([3, 17, 17, 17]) == 3
+
+# numbers.each { |x| return x if numbers.count(x) == 1}  1行で書ける
+# numbers.find { |n| numbers.one? n } 一番短い？
+# numbers.each { |n| numbers.one? n } では配列の要素全てを検証するが、.findの場合はtrueになった時点でループを抜ける
+# .one?メソッドは引数が配列の中で一意であればtrueを返す
+
+# --------------------------------------------------------------------------------------------------
+
+# no.15
+# 7kyu Odd or Even?
+
+# def odd_or_even(array)
+#   return "even" if array.empty? || array.sum.even?
+#   return "odd"
+# end
+
+# p odd_or_even([0]) == "even"
+# p odd_or_even([]) == "even"
+# p odd_or_even([1]) == "odd"
+# p odd_or_even([-1023, 1, -2]) =="even"
+
+# array.sum.even? ? 'even' : 'odd' が一番短い
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.16
+# 7kyu Sum of numbers from 0 to N
+
+# class SequenceSum
+#   def self.show_sequence(n)
+#     if n == 0
+#       "0=0"
+#     elsif n < 0
+#       "#{n}<0"
+#     else
+#       formula_element = [*(0..n)].map(&:to_s).join("+")
+#       "#{formula_element} = #{[*(0..n)].sum}"
+#     end
+#   end
+# end
+
+# p SequenceSum.show_sequence(0) == "0=0"
+# p SequenceSum.show_sequence(-1) == "-1<0"
+# p SequenceSum.show_sequence(6) == "0+1+2+3+4+5+6 = 21"
+# p SequenceSum.show_sequence(12) == "0+1+2+3+4+5+6+7+8+9+10+11+12 = 78"
+
+
+# caseの方が良かった。(0..n).to_a.join("+")の方が短い。
+# def self.show_sequence(n)
+#   case n <=> 0
+#     when -1 then "#{n}<0"
+#     when 0  then "#{n}=0"
+#     else         "#{(0..n).to_a.join('+')} = #{(0..n).reduce(:+)}"
+#   end
+# end
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.17
+# 7kyu Is this a triangle?
+
+# def is_triangle(a,b,c)
+#   edges = [a, b, c].sort
+#   edges[1] - edges[0] < edges[2] && edges[2] < edges[1] + edges[0]
+# end
+
+# p is_triangle(1,2,2) == true
+# p is_triangle(7,2,2) == false
+
+# 三角形の成立条件
+# |a − b| < c < a + b
+# http://physics.thick.jp/Mathematics_A/Section5/5-3.html
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.18
+# 7kyu Check the exam
+
+# def check_exam(arr1,arr2)
+#   score = 0
+#   arr1.each_with_index do |exam, index|
+#     score += 4 if exam == arr2[index]
+#     score -= 1 if !arr2[index].empty? && exam != arr2[index]
+#   end
+#   score < 0 ? 0 : score
+# end
+
+# p check_exam(["a", "a", "b", "b"], ["a", "c", "b", "d"]) == 6
+# p check_exam(["a", "a", "b", "c"], ["a", "a", "b", "c"]) == 16
+# p check_exam(["b", "c", "b", "a"], ["",  "a", "a", "c"]) == 0
+
+# 三項演算子を入れ子にした書き方。.zipメソッドは２つの配列の要素数が同じ場合、同じindex番号の要素を組み合わせて配列を生成する
+# score = 0
+# arr1.zip(arr2).map {|a,b| b == '' ? score += 0 : a == b ? score += 4 : score -= 1 }
+# score < 0 ? score = 0 : score
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.19
+# 7kyu
