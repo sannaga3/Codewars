@@ -495,3 +495,214 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.27
+# 6kyu Your order, please
+
+# def order(words)
+#   word_length = words.split(' ').length
+#   sorted_words = [*(1..word_length)]
+#   words.split(' ').each do |word|
+#     index = word.delete("^0-9").to_i
+#     sorted_words[index - 1] = word
+#   end
+#   p sorted_words.join(" ")
+# end
+
+# p order("is2 Thi1s T4est 3a") == "Thi1s is2 3a T4est"
+# p order("4of Fo1r pe6ople g3ood th5e the2") == "Fo1r the2 g3ood 4of th5e pe6ople"
+# p order("") == ""
+
+# p words.split.sort_by{ |w| w[/\d/] } 一番短い。sort_byメソッドで、単語を数字のみにしてから並び替える
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.28
+# 6kyu IQ Test
+
+# def iq_test(numbers)
+#   number_list = numbers.split(' ')
+#   number_list.select { |n| n.to_i.even? }.count > 1 ? number_list.each_with_index { |n, i| return i + 1 if n.to_i.odd? } : number_list.each_with_index { |n, i| return i + 1 if n.to_i.even? }
+# end
+
+# p iq_test("2 4 7 8 10") == 3
+# p iq_test("1 2 2") == 1
+
+# 一番わかりやすい
+# nums = numbers.split.map(&:to_i).map(&:even?)
+# nums.count(true) > 1 ? nums.index(false) + 1 : nums.index(true) + 1
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.29
+# 6kyu Who likes it?
+
+# def likes(names)
+#   case names.length
+#   when 0
+#     return 'no one likes this'
+#   when 1
+#     return "#{names[0]} likes this"
+#   when 2
+#     return "#{names[0]} and #{names[1]} like this"
+#   when 3
+#     return "#{names[0]}, #{names[1]} and #{names[2]} like this"
+#   else
+#     return "#{names[0]}, #{names[1]} and #{names.length - 2} others like this"
+#   end
+# end
+
+# p likes([]) == 'no one likes this'
+# p likes(['Peter']) == 'Peter likes this'
+# p likes(['Jacob', 'Alex']) == 'Jacob and Alex like this'
+# p likes(['Max', 'John', 'Mark']) == 'Max, John and Mark like this'
+# p likes(['Alex', 'Jacob', 'Mark', 'Max']) == 'Alex, Jacob and 2 others like this'
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.30
+# 6kyu Stop gninnipS My sdroW!
+
+# def spin_words(string)
+#   string.split.map { |str| str.size > 4 ? str.reverse : str }.join(' ')
+# end
+
+# p spin_words("Welcome") == "emocleW"
+# p spin_words("Hey fellow warriors") == "Hey wollef sroirraw"
+
+# string.gsub(/\w{5,}/, &:reverse) 一番短い
+# \w アルファベット・数字・アンダーバー、 {n,} 最小文字数
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.31
+# 6kyu Array.diff
+
+# def array_diff(a, b)
+#   a - b
+# end
+
+# p array_diff([1,2], [1]) == [2]
+# p array_diff([1,2,2], [1]) == [2,2]
+# p array_diff([1,2,2], [2]) == [1]
+# p array_diff([1,2,2], []) == [1,2,2]
+# p array_diff([], [1,2]) == []
+# p array_diff([1,2,3], [1,2]) == [3]
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.32
+# 6kyu Find The Parity Outlier
+
+# def find_outlier(integers)
+#   integers.select(&:odd?).size > 1 ? integers.find(&:even?) : integers.find(&:odd?)
+# end
+
+# p find_outlier([0, 1, 2]) == 1
+# p find_outlier([1, 2, 3]) == 2
+# p find_outlier([160, 3, 1719, 19, 11, 13, -21]) == 160
+
+#  integers.partition(&:odd?).find(&:one?).first 一番短い。
+#  partitionメソッド...ブロックの条件を満たすものと満たさないもの、２種類配列に分別する。
+#  one?メソッド...要素もしくはブロックに対して真が1つだけであればtrueそうでなければfalseを返す。
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.33
+# 6kyu Counting Duplicates
+
+# def duplicate_count(text)
+  # text.downcase.chars.group_by(&:itself).map {|_ , v| v.size }.select { |n| n > 1 }.size
+# end
+
+# p duplicate_count("") == 0
+# p duplicate_count("abcde") == 0
+# p duplicate_count("abcdeaa") == 1
+# p duplicate_count("aA11") == 2
+# p duplicate_count("abcdeaB") == 2
+# p duplicate_count("Indivisibilities") == 2
+
+# text.downcase.chars.group_by(&:to_s).count { |_, v| v.count > 1 } 一番短い？
+# group_by(&:itself) と (&:to_s) の結果は同じ。.map {|_ , v| v.size }が冗長だった。
+# bestPracticeの回答では、問題文に記述されている duplicate_count("aA11") == 2 が通らない
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.34
+# 6kyu Duplicate Encoder
+
+# def duplicate_encode(word)
+#   strings = word.downcase.chars
+#   strings.map { |str| strings.count(str) > 1 ? ")" : "(" }.join
+# end
+
+# p duplicate_encode("din") == "((("
+# p duplicate_encode("recede") == "()()()"
+# p duplicate_encode("Success") == ")())())"
+# p duplicate_encode("(( @") == "))(("
+
+#  以下がbestPracticeになっている回答。letter = の意図がわからない。letter = を取り除いても問題なく通る
+# word
+#   .downcase
+#   .chars
+#   .map { |char| word.downcase.count(char) > 1 ? letter = ')' : letter = '(' }
+#   .join
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.35
+# 6kyu Replace With Alphabet Position
+
+# def alphabet_position(text)
+  # alphabet = [*('a'..'z')]
+  # strings = text.downcase.chars
+  # strings.select{ |str| alphabet.include?(str) }.empty? ? "" : strings.each_with_index { |k, v| alphabet.include?(k) ? k : strings.delete_at(v) }.map { |str| alphabet.index(str) + 1 if alphabet.index(str) != nil }.select { |n| n != nil }.join(' ')
+# end
+
+# p alphabet_position("The sunset sets at twelve o' clock.") == "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11"
+# p alphabet_position("-.-'") == ""
+# p alphabet_position("./lib/solution.rb:3:in `block in alphabet_position': undefined method `+' for nil:NilClass (NoMethodError)")
+
+# アルファベットとして認識されてしまう記号の削除が難しかった
+# text.gsub(/[^a-z]/i, '').chars.map{ |c| c.downcase.ord - 96 }.join(' ') 一番短い？
+# text.gsub(/[^a-z]/, '') a-zから始まっていない場合は削除(空にする)。/iは修飾詞、大文字小文字を区別しない。
+# ordメソッド...文字をASCIIコードのコードポイントへ変換する。a ＝ 97なので、-96することで a ＝ 1 から順番に番号を割り当てることができる。コードポイントから文字へ変換する場合は.chr
+# 正規表現チートシート https://murashun.jp/article/programming/regular-expression.html
+# ordとchr https://maku77.github.io/ruby/number/ascii-char.html
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.36
+# 6kyu Unique In Order
+
+# def unique_in_order(iterable)
+  # iterable = iterable.chars if iterable.class == String
+  # iterable.each_with_index do |k, v|
+  #   if k == iterable[v + 1]
+  #     iterable[v] = nil
+  #   end
+  # end
+  # iterable.select{ |n| !n.nil? }
+# end
+
+# unique_in_order('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']
+# p unique_in_order('ABBCcAD')         == ['A', 'B', 'C', 'c', 'A', 'D']
+# p unique_in_order([1,2,2,3,3])       == [1,2,3]
+
+# (iterable.is_a?(String) ? iterable.chars : iterable).chunk { |x| x }.map(&:first) 一番短い
+# is_aメソッド...対象が引数のクラスと同じか、もしくはそのサブクラスの場合trueを返す
+# chunkメソッド...要素を前から順にブロックで評価し、前の評価と次の評価が異なる場合、次の評価は前と別の配列に区切られる。
+# [3, 1, 1, 1, 5, 5, 2, 6, 6, 3, 5].chunk { |n| n }.each { |_, ary| p ary.first } とすると、同じ値が続いている場合削除できる。上の例とやっていることは同じ。
+
+
+# --------------------------------------------------------------------------------------------------
+
