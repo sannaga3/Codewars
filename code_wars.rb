@@ -664,7 +664,7 @@
 # def alphabet_position(text)
   # alphabet = [*('a'..'z')]
   # strings = text.downcase.chars
-  # strings.select{ |str| alphabet.include?(str) }.empty? ? "" : strings.each_with_index { |k, v| alphabet.include?(k) ? k : strings.delete_at(v) }.map { |str| alphabet.index(str) + 1 if alphabet.index(str) != nil }.select { |n| n != nil }.join(' ')
+  # strings.select{ |str| alphabet.include?(str) }.empty? ? "" : strings.each_with_index { |k, v| alphabet.include?(k) ? k : strings.delete_at(v) }.map { |str| alphabet.inde(str)+ 1 if alphabet.index(str) != nil }.select { |n| n != nil }.join(' ')
 # end
 
 # p alphabet_position("The sunset sets at twelve o' clock.") == "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11"
@@ -706,3 +706,246 @@
 
 # --------------------------------------------------------------------------------------------------
 
+# no.37
+# 6kyu Unique In Order
+
+# def to_camel_case(str)
+#   strings = str.chars
+#   strings.each_with_index { |k, v| strings[v + 1].upcase! if ([*('a'..'z'), *('A'..'Z')]).index(k) == nil }.join.gsub(/[^a-z]/i, '')
+# end
+
+# p to_camel_case('') == ''
+# p to_camel_case("the_stealth_warrior") == "theStealthWarrior"
+# p to_camel_case("The-Stealth-Warrior") == "TheStealthWarrior"
+# p to_camel_case("A-B-C") == "ABC"
+
+# str.gsub(/[_-](.)/) {"#{$1.upcase}"} 一番短い
+# [_-] _-のいずれか一文字、 .(ドット)は任意の1文字。()でキャプチャ。$1はキャプチャされた対象。つまり _ か - の次の文字をキャプチャして大文字にする。
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.38
+# 6kyu Detect Pangram
+
+# def pangram?(string)
+  # string.downcase.chars.uniq.sort.join.include?([*('a'..'z')].join)
+# end
+
+# p pangram?("The quick brown fox jumps over the lazy dog.") == true
+# p pangram?("This is not a pangram.") == false
+
+# ('a'..'z').all? { |x| string.downcase.include? (x) } BestPracticeの回答。上記は繰り返さないが、どちらが早いか？
+# .allメソッド...ブロックの中の評価が全て真の場合のみ true を返す
+# ("A".."Z").to_a - string.upcase.chars == [] これが一番良いかも。引数の文字列とa-zを全て大文字の配列にして引くと空になる。
+# string.downcase.scan(/[a-z]/).uniq.size == 26 スキャンしてユニークにして文字数を数える
+
+# --------------------------------------------------------------------------------------------------
+
+# no.39
+# 6kyu Split Strings
+
+# def solution(str)
+  # str += "_" if str.length.odd?
+  # str.scan(/(..)/).flatten
+# end
+
+# p solution("abcdef") == ["ab", "cd", "ef"]
+# p solution("abcdefg") == ["ab", "cd", "ef", "g_"]
+# p solution("") == []
+
+# (str + '_').scan /../ 一番短い。文字数が偶数の場合最後の _ はマッチしない。
+# str.concat('_').scan /../
+# concatメソッド...配列か文字列に対して追加したいものを引数に指定する。文字列と数字を引数にした場合、全てを文字列として返す。
+# (str + '_').scan(/\w{2}/)
+
+# --------------------------------------------------------------------------------------------------
+
+# no.40
+# 6kyu Find the unique number
+
+# def find_uniq(arr)
+#   arr.uniq.map { |n| return n if arr.count(n) == 1 }
+# end
+
+# p find_uniq([1,1,1,1,0]) == 0
+# p find_uniq([ 1, 1, 1, 2, 1, 1 ]) == 2
+# p find_uniq([ 0, 0, 0.55, 0, 0 ]) == 0.55
+
+# arr.uniq.min_by { |n| arr.count(n) }  一番重複数の少ないものを調べるならmin_byメソッド
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.41
+# 6kyu Are they the "same"?
+
+# def comp(array1, array2)
+#   array1.nil? || array2.nil? ? false : array1.sort.map { |n| n * n } == array2.sort
+# end
+
+# p comp([121, 144, 19, 161, 19, 144, 19, 11], [11*11, 121*121, 144*144, 19*19, 161*161, 19*19, 144*144, 19*19]) == true
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.42
+# 6kyu Find the missing letter
+
+# def find_missing_letter(arr)
+#   ([*(arr.first..arr.last)] - arr).first
+# end
+
+# p find_missing_letter(["a","b","c","d","f"]) == "e"
+# p find_missing_letter(["O","Q","R","S"]) == "P"
+# p find_missing_letter(["b","d"]) == "c"
+# p find_missing_letter(["a","b","d"]) == "c"
+
+#  ((arr.first..arr.last).to_a - arr).first
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.43
+# 6kyu Vasya - Clerk
+
+# def tickets(people)
+#   money = []
+#   failure = true
+#   people.each do |payment|
+#     money << payment if payment == 25
+#     money.include?(25) ? money.push(50).delete_at(money.index(25)) : failure = false if payment == 50
+#     if payment == 100
+#       if money.include?(25) && money.include?(50)
+#         money.delete_at(money.index(25))
+#         money.delete_at(money.index(50))
+#         money.push(100)
+#       elsif money.count(25) >= 3
+#         3.times do
+#           money.delete_at(money.index(25))
+#         end
+#         money.push(100)
+#       else
+#         failure = false
+#       end
+#     end
+#     return "NO" if failure == false
+#   end
+#   "YES"
+# end
+
+# p tickets([25, 25, 50]) == 'YES'
+# p tickets([25, 100]) == 'NO'
+# p tickets([25, 25, 50, 100]) == 'YES'
+# p tickets([25, 25, 50, 50, 100]) == 'NO'
+# p tickets([25, 25, 25, 100]) == 'YES'
+# p tickets([50, 100]) == 'NO'
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.44
+# 6kyu Build a pile of Cubes
+
+# require 'benchmark'
+
+# result = Benchmark.realtime do
+#   def find_nb(m)
+    # cubes = (1..1000000).to_a
+    # volume = 0
+    # cubes.each do |n|
+    #   volume += n * n * n
+    #   return n if volume == m
+    #   return -1 if volume > m
+    # end
+#   end
+# end
+# puts "処理時間 #{result}s" #=> 2~3秒
+
+# find_nb(4183059834009) == 2022
+# find_nb(24723578342962) == -1
+# find_nb(135440716410000) == 4824
+# find_nb(40539911473216) == 3568
+
+# 1つ目で計測
+# 2秒ジャストくらい
+# ct = 0
+# while m > 0
+#   ct += 1
+#   m -= ct**3
+# end
+# m == 0 ? ct : -1
+
+# 2~3秒
+# n = ((m * 4)**0.25).to_i
+# (n**2) * ((n + 1)**2) / 4 == m ? n : -1
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.45
+# 6kyu Sort the odd
+
+# def sort_array(source_array)
+  # odds = source_array.select { |n| n.odd? }.sort
+  # i = 0
+  # source_array.each_with_index do |k, v|
+  #   source_array[v] = odds[i] if k.odd?
+  #   i += 1 if k.odd?
+  # end
+  # source_array
+# end
+
+# p sort_array([5, 3, 2, 8, 1, 4, 11]) == [1, 3, 2, 8, 5, 4, 11]
+# p sort_array([2, 22, 37, 11, 4, 1, 5, 0]) == [2, 22, 1, 5, 4, 11, 37, 0]
+# p sort_array([1, 111, 11, 11, 2, 1, 5, 0]) == [1, 1, 5, 11, 2, 11, 111, 0]
+# p sort_array([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]) ==[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+# p sort_array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+# p sort_array([0, 1, 2, 3, 4, 9, 8, 7, 6, 5]) == [0, 1, 2, 3, 4, 5, 8, 7, 6, 9]
+# p sort_array([]) == []
+# p sort_array([19]) == [19]
+# p sort_array([2]) == [2]
+# p sort_array([7,5]) == [5,7]
+
+# 一番短い。shiftメソッドを使ってoddsの先頭を削除して自身を返り値にする。
+# odds = source_array.select(&:odd?).sort
+# source_array.map { |n| n.even? ? n : odds.shift }
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.46
+# 5kyu Valid Parentheses
+
+# def valid_parentheses(string)
+  # target = string.chars.select { |t| t == "(" || t == ")" }
+  # target_list = []
+  # target.each do |t|
+  #   target_list << t
+  #   p target_list
+  #   if target_list.count("(") < target_list.count(")")
+  #     return false
+  #   end
+  # end
+  # target_list.count("(") == target_list.count(")") ? true : false
+# end
+
+# p valid_parentheses("  (") == false
+# p valid_parentheses(")test") == false
+# p valid_parentheses("") == true
+# p valid_parentheses("hi())(") == false
+# p valid_parentheses("(a(a))") == true
+
+# 一番簡単
+# open = 0
+# string.chars.each do |c|
+#   open += 1 if c == "("
+#   open -= 1 if c == ")"
+#   return false if open < 0
+# end
+# open = 0
+
+# 一番わかりやすい
+# str = string.delete("^()")
+# while p str.gsub!("()",''); end
+# str == ''
