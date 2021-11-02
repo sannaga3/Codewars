@@ -936,7 +936,7 @@
 # p valid_parentheses("hi())(") == false
 # p valid_parentheses("(a(a))") == true
 
-# 一番簡単
+# 一番わかりやすい
 # open = 0
 # string.chars.each do |c|
 #   open += 1 if c == "("
@@ -945,7 +945,226 @@
 # end
 # open = 0
 
-# 一番わかりやすい
+# 一番短い
 # str = string.delete("^()")
 # while p str.gsub!("()",''); end
 # str == ''
+
+# --------------------------------------------------------------------------------------------------
+
+# no.47
+# 5kyu Simple Pig Latin
+
+# def pig_it text
+  # text.split(' ').map { |t| t + t.slice!(0) + "ay" if t.scan(/[a-z]/i) }.join(' ')
+  # text.split(' ').map { |t| p t.scan(/[a-z]/i) && !([".", ",", "*", "+", "?", "!"]).index(t) ? t + t.slice!(0) + "ay" : t }.join(' ')
+# end
+
+# p pig_it('Pig latin is cool ?') == 'igPay atinlay siay oolcay ?'
+# p pig_it('This is my string') == 'hisTay siay ymay tringsay'
+
+# text.gsub(/(\w)(\w+)*/, '\2\1ay') 一番短い。１文字目と２文字目以降で分割してマッチさせる。
+# /(\w)(\w+)*/ ２文字以上の英数字かアンダーバーの場合、 '\2\1ay' 1つ目のマッチに'ay'を加えて2つ目のマッチと入れ替える
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.48     テストは通るが、codewars上でタイムアウトになる問題が解決できず保留
+# 5kyu Sum of pairs
+
+# def sum_pairs(ints, s)
+#   pair_list = []
+#   ints.each_with_index do |int, i|
+#     pair_elements = ints.drop(1 + i)
+#     pair_elements.each_with_index do |pair_int, j|
+#       pair_list << [i, j + i + 1] if int + pair_int == s
+#     end
+#   end
+#   if pair_list == []
+#     nil
+#   else
+#     pair_distance = pair_list.map{ |pair| pair[1] - pair[0] }
+#     pair_list = pair_list[pair_distance.index(pair_distance.min)].map { |index| ints[index] }
+#   end
+# end
+
+
+# require 'benchmark'
+
+# 最初のコード 2秒
+# result = Benchmark.realtime do
+  # def sum_pairs(ints, s)
+  #   pair_list = []
+  #   ints.each_with_index do |int, i|
+  #     pair_elements = ints.drop(1 + i)
+  #     pair_elements.each_with_index do |pair_int, j|
+  #       pair_list << [i, j + i + 1] if int + pair_int == s
+  #     end
+  #   end
+  #   if pair_list.empty?
+  #     nil
+  #   else
+  #     pair_distance = pair_list.map{ |pair| pair[1] - pair[0] }
+  #     pair_list = pair_list[pair_distance.index(pair_distance.min)].map { |index| ints[index] }
+  #   end
+  # end
+# end
+# puts "処理時間 #{result}s"
+
+
+# 改善１回目 ２秒 変化なし
+# result = Benchmark.realtime do
+#   def sum_pairs(ints, s)
+#     p = []
+#     ints.each_with_index do |int, i|
+#       ele = ints.drop(1 + i)
+#       ele.each { |el| p << [i, i + ele.index(el) + 1, ele.index(el) + 1] if int + el == s }
+#       # pair_el.each { |el| p << [i, i + pair_el.index(el) + 1] if int + el == s }
+#     end
+#     if p == []
+#       nil
+#     else
+#       # pair_dis = pairs.map{ |pair| pair[1] - pair[0] }
+#       # pairs = pairs[pair_dis.index(pair_dis.min)].map { |index| ints[index] }
+#       pd = p.map { |p| p[2] }.min
+#       [ints[p[pd][0]], ints[p[pd][1]]]
+#       # [ints[pairs[pair_dis][0]], ints[pairs[pair_dis][1]]]
+#     end
+#   end
+# end
+# puts "処理時間 #{result}s"
+
+
+# 改善２回目 各変数の名前を短くしたことで、少し1.0秒代の確率が増えた。
+# result = Benchmark.realtime do
+  # def sum_pairs(ints, s)
+  #   pl = []
+  #   ints.each_with_index do |int, i|
+  #     ele = ints.drop(1 + i)
+  #     ele.each_with_index do |pair_int, j|
+  #       pl << [i, j + i + 1] if int + pair_int == s
+  #     end
+  #   end
+  #   if pl.empty?
+  #     nil
+  #   else
+  #     pd = pl.map{ |pair| pair[1] - pair[0] }
+  #     pl[pd.i(pd.min)].map { |i| ints[i] }
+  #   end
+  # end
+# end
+# puts "処理時間 #{result}s"
+
+
+# 改善3回目 min_byで少し早くなったが、1065行目で同じ数字の最後を取得できない。繰り返しと判定を高速化する術が必要。解決に至らず
+# result = Benchmark.realtime do
+#   def sum_pairs(ints, s)
+#     pl = []
+#     ints.each_with_index do |int, i|
+#       el = ints.index(s - int)
+#       p pl << [i, el] if el && el != i
+#     end
+#     if pl.empty?
+#       nil
+#     else
+#       p pd = pl.min_by{ |pair| pair[1] - pair[0] }
+#       [ints[pd[0][0]], ints[pd[0][1]]]
+#     end
+#   end
+# end
+# puts "処理時間 #{result}s"
+
+
+# l1= [1, 4, 8, 7, 3, 15]
+# l2= [1, -2, 3, 0, -6, 1]
+# l3= [20, -13, 40]
+# l4= [1, 2, 3, 4, 1, 0]
+# l5= [10, 5, 2, 3, 7, 5]
+# l6= [4, -2, 3, 3, 4]
+# l7= [0, 2, 0]
+# l8= [5, 9, 13, -3]
+
+
+# p sum_pairs(l1, 8) == [1, 7]
+# p sum_pairs(l2, -6) == [0, -6]
+# p sum_pairs(l3, -7) == nil
+# p sum_pairs(l4, 2) == [1, 1]
+# p sum_pairs(l5, 10) == [3, 7]
+# p sum_pairs(l6, 8) == [4, 4]
+# p sum_pairs(l7, 0) == [0, 0]
+# p sum_pairs(l8, 10) == [13, -3]
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.49
+
+# 5kyu String incrementer
+
+# def increment_string(input)
+  # numbers = input.gsub(/(\d+$)/).to_a.last
+  # if numbers.nil?
+  #   input + '1'
+  # else
+  #   replace_num = (numbers.to_i + 1).to_s
+  #   if numbers.length <= replace_num.length
+  #     return p input.gsub(/(\d+$)/, replace_num)
+  #   else
+  #     (replace_num.length).times do input.chop! end
+  #     return input + replace_num
+  #   end
+  # end
+  # input.sub(/\d*$/) { |n| n.empty? ? 1 : n.succ }
+# end
+
+# p increment_string("foo") ==  "foo1"
+# p increment_string("foobar001") ==  "foobar002"
+# p increment_string("foob00ar0") ==  "foob00ar1"
+# p increment_string("foobar1") ==  "foobar2"
+# p increment_string("foobar00") ==  "foobar01"
+# p increment_string("foobar99") ==  "foobar100"
+# p increment_string("foobar0099") ==  "foobar0100"
+# p increment_string("") ==  "1"
+
+# .gsub(/(\d+$)/)のように $ でマッチを行末に限定しないと、マッチした箇所全てが置換されてしまう
+
+# input.sub(/\d*$/) { |n| n.empty? ? 1 : n.succ } 一番短い
+# .sub ...マッチした最初の部分を文字列 replace で置き換える
+
+# .succ ... 文字列の後継の文字列を返すメソッド
+#  例   https://hackmd.io/@zuby/BklVXzZ6w
+# "a".succ   => "b"
+# "100".succ => "101"
+# "###".succ => "##$"
+# "を".succ  =>  "ん"
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.50
+# 5kyu String incrementer
+
+# def cakes(recipe, available)
+  # pick_availavle = available.select { |ingredients| recipe.include?(ingredients) }
+  # return 0  if recipe.size != pick_availavle.size
+  # recipe.sort
+  # pick_availavle.sort
+  # recipe.map{ |ingredients|  pick_availavle[ingredients[0]] / ingredients[1] }.min
+# end
+
+# p cakes({"flour"=>500, "sugar"=>200, "eggs"=>1},{"flour"=>1200, "sugar"=>1200, "eggs"=>5, "milk"=>200}) == 2
+# p cakes({"cream"=>200, "flour"=>300, "sugar"=>150, "milk"=>100, "oil"=>100},{"sugar"=>1700, "flour"=>20000, "milk"=>20000, "oil"=>30000, "cream"=>5000}) == 11
+# p cakes({"apples"=>3, "flour"=>300, "sugar"=>150, "milk"=>100, "oil"=>100},{"sugar"=>500, "flour"=>2000, "milk"=>2000}) == 0
+# p cakes({"apples"=>3, "flour"=>300, "sugar"=>150, "milk"=>100, "oil"=>100},{"sugar"=>500, "flour"=>2000, "milk"=>2000, "apples"=>15, "oil"=>20}) == 0
+# p cakes({"eggs"=>4, "flour"=>400},{}) == 0
+# p cakes({"cream"=>1, "flour"=>3, "sugar"=>1, "milk"=>1, "oil"=>1, "eggs"=>1},{"sugar"=>1, "eggs"=>1, "flour"=>3, "cream"=>1, "oil"=>1, "milk"=>1}) == 1
+
+# recipe.collect { | k, v | available[k].to_i / v }.min  一番短い。recipeのkeyをそのまま使ってavailableの数量を取得できる。
+# collectメソッド...ブロックを評価したものを全て集めた配列を返す。
+
+# mapとcollectの違い   https://magazine.rubyist.net/articles/0038/0038-MapAndCollect.html
+# map は「データ構造を保ったまま3、あるルールに従って元のデータ構造を別データ構造に変換する」   全体をまとまりとして捉える
+# collect は「データ構造内の全ての要素に対して、ある処理を繰り返し実行し、その結果を集めたもの」   個々の要素を扱う
+
+
+# --------------------------------------------------------------------------------------------------
