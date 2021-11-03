@@ -357,7 +357,7 @@
 
 # --------------------------------------------------------------------------------------------------
 
-# no.19
+# no.19
 # 7kyu Mumbling
 
 # def accum(s)
@@ -1114,7 +1114,6 @@
   #     return input + replace_num
   #   end
   # end
-  # input.sub(/\d*$/) { |n| n.empty? ? 1 : n.succ }
 # end
 
 # p increment_string("foo") ==  "foo1"
@@ -1165,6 +1164,141 @@
 # mapとcollectの違い   https://magazine.rubyist.net/articles/0038/0038-MapAndCollect.html
 # map は「データ構造を保ったまま3、あるルールに従って元のデータ構造を別データ構造に変換する」   全体をまとまりとして捉える
 # collect は「データ構造内の全ての要素に対して、ある処理を繰り返し実行し、その結果を集めたもの」   個々の要素を扱う
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.51  テストは通るが、codewars上でタイムアウトになる問題が解決できず
+# 5kyu Primes in numbers
+
+# require 'benchmark'
+
+# result = Benchmark.realtime do
+#   def prime_factors(n)
+#     primes = []
+#     divide_nums = (3..(n / 3)).step(2).to_a
+#     while n != 1 do
+#       if n % 2 == 0
+#         n /= 2
+#         primes << 2
+#       else
+#         divided = false
+#         divide_nums.each do |num|
+#           if n % num == 0
+#             primes << num
+#             n /= num
+#             divided = true
+#           end
+#           break if divided
+#         end
+#       end
+#     end
+#     primes << n if n != 1
+#     primes.uniq.map { |prime| primes.count(prime) > 1 ? "(#{prime}**#{primes.count(prime)})" : "(#{prime})" }.join
+#   end
+# end
+# puts "処理時間 #{result}s"
+
+# p prime_factors(7775460) == "(2**2)(3**3)(5)(7)(11**2)(17)"
+
+
+
+# 素因数分解のライブラリがすごく便利
+
+# require 'prime'
+# p 68.prime_division => [[2, 2], [17, 1]] => 2 * 2 * 17 * 1 = 68
+# p result = Prime.prime_division(100) => [[2, 2], [5, 2]] => 2 * 2 * 5 * 5 => 100
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.52
+# 5kyu First non-repeating character
+
+# def  first_non_repeating_letter(s)
+  # char = s.gsub(/[\?|\!\+]/, '').chars.select{ |st| s.scan(/#{st}/i).count == 1 }.first
+  # char.nil? ? '' : char.empty? ? "None" : char
+# end
+
+# p first_non_repeating_letter('a') == 'a'
+# p first_non_repeating_letter('sTtress') == 'r'
+# p first_non_repeating_letter('moonmen') == 'e'
+# p first_non_repeating_letter('m?!+oonmen') == 'e'
+# p first_non_repeating_letter('') == ''
+
+# 記号は予めエスケープしておかないとエラーになる
+# s.chars.find {|i| s.downcase.count(i)==1 || s.upcase.count(i)==1} || "" best practiceにっているが特殊文字に対応していない。
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.53
+# 5kyu The Hashtag Generator
+
+# def generateHashtag(str)
+  # return false if str.strip == ''
+  # st = str.split(' ').map! { |st| st.capitalize }.unshift("#").join
+  # st.size > 140 || st == '' ? false : st
+# end
+
+# p generateHashtag("") == false
+# p generateHashtag(" " * 200) == false
+# p generateHashtag("Do We have A Hashtag") == "#DoWeHaveAHashtag"
+# p generateHashtag("Codewars") == "#Codewars"
+# p generateHashtag("Codewars Is Nice") == "#CodewarsIsNice"
+# p generateHashtag("Codewars is nice") == "#CodewarsIsNice"
+# p generateHashtag("code" + " " * 140 + "wars") == "#CodeWars"
+# p generateHashtag("Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong Cat") == false
+# p generateHashtag("a" * 139) == "#A" + "a" * 138
+# p generateHashtag("a" * 140) == false
+
+# capitalizeメソッド...文字列の頭文字だけ大文字で残りを小文字にして返す
+# stripメソッド...行頭行末の空白を消す。行間の空白は残す。
+
+# 一番短い
+# str = "#" << str.split.map(&:capitalize).join
+# str.size <= 140 && str.size > 1 ? str : false
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.54
+# 5kyu Greed is Good
+
+# def score( dice )
+  # point = 0
+  # dice.group_by(&:itself).each do |d|
+  #   case d[1].size
+  #   when 5
+  #     d[0] == 1 ? point += 1200 : d[0] == 5 ? point += 600 : point += d[0] * 100
+  #   when 4
+  #     d[0] == 1 ? point += 1100 : d[0] == 5 ? point += 550 : point += d[0] * 100
+  #   when 3
+  #     d[0] == 1 ? point += 1000 : point += d[0] * 100
+  #   when 2
+  #     d[0] == 1 ? point += 200 : d[0] == 5 ? point += 100 : ""
+  #   else
+  #     d[0] == 1 ? point += 100 : d[0] == 5 ? point += 50 : ""
+  #   end
+  # end
+  # point
+# end
+
+# p score( [2, 3, 4, 6, 2] ) == 0
+# p score( [2, 2, 2, 3, 3] ) == 200
+# p score( [2, 4, 4, 5, 4] ) == 450
+# p score( [1, 1, 1, 1, 4] ) == 1100
+# p score( [1, 1, 1, 1, 5] ) == 1150
+
+# 面白い回答 全ての計算を配列にして最後に足す
+# [ dice.count(1) / 3 * 1000,
+#   dice.count(6) / 3 * 600,
+#   dice.count(5) / 3 * 500,
+#   dice.count(4) / 3 * 400,
+#   dice.count(3) / 3 * 300,
+#   dice.count(2) / 3 * 200,
+#   dice.count(1) % 3 * 100,
+#   dice.count(5) % 3 * 50 ].reduce(:+)
 
 
 # --------------------------------------------------------------------------------------------------
