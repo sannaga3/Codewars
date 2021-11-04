@@ -1302,3 +1302,22 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.55
+# 5kyu Greed is Good
+
+# def scramble(s1,s2)
+#   s2.chars.group_by(&:itself).map { |st| s1.chars.count(st[0]) >= st[1].size }.all? { |bool| bool == true }
+# end
+
+# p scramble('rkqodlw','world') == true
+# p scramble('cedewaraaossoqqyt','codewars') == true
+# p scramble('katas','steak') == false
+# p scramble('scriptjava','javascript') == true
+# p scramble('scriptingjava','javascript') == true
+# p scramble('','javascript') == false
+
+# s2.chars.uniq.all?{|x| s2.count(x)<=s1.count(x)} 一番短い
+
+
+# --------------------------------------------------------------------------------------------------
