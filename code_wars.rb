@@ -1321,3 +1321,46 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.56
+# 5kyu Rot13
+
+# def rot13(string)
+#   ascll_st = string.chars.map { |st| st =~ /[\?|\!|\+|\-|\n]/ ? st : st =~ /[a-zA-Z]+/ ? st.ord : st.to_s }
+#   ascll_st.map! do |st|
+#     p st
+#     if st.is_a?(Integer)
+#       if st < 91 && st + 13 > 90
+#         st = st + 13 - 90 + 64
+#       elsif st > 96 && st + 13 > 122
+#         st = st + 13 - 122 + 96
+#       else
+#         st + 13
+#       end
+#     elsif st =~ /[\?|\!|\+|\-|\n]/
+#       st
+#     else
+#       st
+#     end
+#   end
+#   ascll_st.map(&:chr).join
+# end
+
+
+# p "grfg" == rot13("test")
+# p "Grfg" == rot13("Test")
+# p rot13("AZaz")
+# p rot13("Ruby is cool!")
+# p rot13("y7w5z9")
+
+# ROT13...シザー暗号と呼ばれるアルファベットを13文字ずらす暗号技術。解読が簡単すぎてネタバレ防止などに使われている？
+
+# 一番短い  trメソッド...第一引数の文字列を第二引数の文字列に変換する。 ROT13で調べると下記がそっくりそのまま見つかる
+# string.tr("A-Za-z", "N-ZA-Mn-za-m")
+# 例
+# string = "abcde"
+# puts string.tr("a-z", "A-Z") => "ABCDE"
+
+# わかりやすい rotateメソッド...配列の中で引数のindex番号が先頭に来るように並び替える。引数がなければ１が指定される。
+# origin = ('a'..'z').to_a.join + ('A'..'Z').to_a.join
+# cipher = ('a'..'z').to_a.rotate(13).join + ('A'..'Z').to_a.rotate(13).join
