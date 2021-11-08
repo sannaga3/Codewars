@@ -1388,3 +1388,114 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.58
+# 5kyu Find the smallest
+# 頭がこんがらがったので保留。テスト内容：数値の中の1文字を移動させた時の最小値を探す。
+# 考慮する条件
+#   最小値が０か？
+#   最小値が0かつ0のインデックスが1の場合は、インデックス0の値が移動する。
+#   最小値が０以外かつその値のインデックスが０の場合は移動しない為、次に小さい値が移動する。
+#   最小値が2つ以上存在する場合、一番桁の小さいものを移動する。
+
+# def smallest(n)
+#   p min = n.digits.min
+#   if min == 0 && n.digits.count(min) == 1
+#     move = n.to_s.index("0")
+#     result = n.to_s.gsub(/#{min.to_s}/, "").to_i
+#     return [result, min, move]
+#   else
+#     n.digits.count(min) == 1 ? move =  n.to_s.index(min.to_s) : move = n.to_s.reverse.index(min.to_s) * -1 - 1
+#     list = n.to_s.chars
+#     list.delete_at(move)
+#     list.insert(0, min.to_s)
+#     # p list.join.to_i
+#     return p [list.join.to_i, move, ]
+#   end
+# end
+
+
+# def smallest(n)
+#   n_list = n.to_s.chars
+#   n.digits.min == 0 ? min = n.digits.sort[1] : min = n.digits.min
+#   min = n_list.sort[1].to_i if n_list.index(min.to_s) == 0 && min
+#   if min == 0 && n.digits.count(min) == 1
+#     b_move = n.to_s.index("0")
+#     result = n.to_s.gsub(/#{min.to_s}/, "").to_i
+#     return [result, 0, 1]
+#   else
+#     n.digits.count(min) == 1 ? b_move =  n.to_s.index(min.to_s) : b_move = n.to_s.reverse.index(min.to_s) * -1 - 1
+#     # list = n_list
+#     n_list.delete_at(b_move)
+#     n_list.sort.index(min.to_s) == 0 ? n_list.insert(0, min.to_s) : n_list.insert(1, min.to_s)
+#     p n_list.index(min.to_s)
+#     a_move = n_list.index(min.to_s)
+#     return p [n_list.join.to_i, b_move, a_move]
+#   end
+# end
+
+# 最後の状態
+# def smallest(n)
+#   n_list = n.to_s.chars
+#   n.digits.min != 0 ? target = n.digits.min : n_list.index("0") == 1 ? target = n_list[0].to_i : target = n.digits.sort[1]
+#   target = n_list.sort[1].to_i if n_list.index(target.to_s) == 0
+#   if target == 0 && n.digits.count(target) == 1
+#     b_move = n.to_s.index("0")
+#     result = n.to_s.gsub(/#{target.to_s}/, "").to_i
+#     return [result, n_list.index(target.to_s), 1]
+#   else
+#     n.digits.count(target) == 1 ? b_move =  n.to_s.index(target.to_s) : b_move = n.to_s.reverse.index(target.to_s) * -1 - 1
+#     n_list.delete_at(b_move)
+#     b_move = n_list.length + b_move + 1 if b_move < 0
+#     n_list.sort.index(target.to_s) == 0 ? n_list.insert(0, target.to_s) : n_list.insert(1, target.to_s)
+#     n_list.index(target.to_s)
+#     a_move = n_list.index(target.to_s)
+#     return p [n_list.join.to_i, b_move, a_move]
+#   end
+# end
+
+# p smallest(261235) == [126235, 2, 0]
+# p smallest(209917) == [29917, 0, 1]
+# p smallest(20991027) == [2099127, 5, 0]  # 最小値が2つの場合も考慮しておく必要がありそう
+# p smallest(285365) == [238565, 3, 1]
+# p smallest(269045) == [26945, 3, 0]
+# p smallest(296837) == [239687, 4, 1]
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.59
+# 6kyu Find the odd int
+
+# def find_it(seq)
+#   seq.uniq.select { |n| seq.count(n).odd? }.first
+# end
+
+# p find_it([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]) == 5
+# p find_it([1,1,2,-2,5,2,4,4,-1,-2,5]) == -1
+# p find_it([20,1,1,2,2,3,3,5,5,4,20,4,5]) == 5
+# p find_it([10]) == 10
+# p find_it([1,1,1,1,1,1,10,1,1,1,1]) == 10
+
+
+# seq.find{|c| seq.count(c).odd? }
+# seq.detect { |n| seq.count(n).odd? }
+# detectメソッド...ブロックを評価して最初に真になるものを返す
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.60
+# 6kyu Take a Ten Minute Walk
+
+# def is_valid_walk(walk)
+#   p walk.count('n') == walk.count('s') && walk.count('w') == walk.count('e') && walk.count == 10
+# end
+
+# is_valid_walk(['n','s','n','s','n','s','n','s','n','s']) == 'true'
+# is_valid_walk(['w','e','w','e','w','e','w','e','w','e','w','e']) == 'false'
+# is_valid_walk(['w']) == 'false'
+# is_valid_walk(['n','n','n','s','n','s','n','s','n','s']) == 'false'
+
+
+# --------------------------------------------------------------------------------------------------
