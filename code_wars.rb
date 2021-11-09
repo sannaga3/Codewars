@@ -1499,3 +1499,42 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.61
+# 6kyu Consecutive strings
+
+# def longest_consec(strarr, k)
+  # return "" if strarr.size < 1 ||  k < 1 || strarr.size < k
+  # united = []
+  # strarr.each_with_index do |str, i|
+  #   break if i + k > strarr.size
+  #   k.times do |j|
+  #     break if j == k - 1
+  #     str += strarr[i + j + 1]
+  #   end
+  #   united << str
+  # end
+  # maximam = united.map { |str| str.size }.max
+  # united.find { |str| str.size == maximam }
+# end
+
+# p longest_consec(["zone", "abigail", "theta", "form", "libe", "zas"], 2) == "abigailtheta"
+# p longest_consec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 1) == "oocccffuucccjjjkkkjyyyeehh"
+# p longest_consec([], 3) == ""
+# p longest_consec(["itvayloxrp","wkppqsztdkmvcuwvereiupccauycnjutlv","vweqilsfytihvrzlaodfixoyxvyuyvgpck"], 2) == "wkppqsztdkmvcuwvereiupccauycnjutlvvweqilsfytihvrzlaodfixoyxvyuyvgpck"
+# p longest_consec(["wlwsasphmxx","owiaxujylentrklctozmymu","wpgozvxxiu"], 2) == "wlwsasphmxxowiaxujylentrklctozmymu"
+# p longest_consec(["zone", "abigail", "theta", "form", "libe", "zas"], -2) == ""
+# p longest_consec(["it","wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"], 3) == "ixoyx3452zzzzzzzzzzzz"
+# p longest_consec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 15) == ""
+# p longest_consec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 0) == ""
+
+# 短い回答2つ
+# betweenメソッド...レシーバが第一引数（min）、第二引数(max)の範囲ないにあればtrueを返す。文字列の場合も同じ。
+# each_consメソッド...要素を引数の値ごとに区切って繰り返して返す(Enumeratorとして返る)。(1..4).each_cons(2).to_a => [[1, 2], [2, 3], [3, 4]]
+# return "" unless k.between?(1, strarr.length)
+# strarr.each_cons(k).map(&:join).max_by(&:length) || ""
+
+# k > strarr.size || k <= 0 ? '' : strarr.each_cons(k).map(&:join).max_by(&:size)
+
+
+# --------------------------------------------------------------------------------------------------
