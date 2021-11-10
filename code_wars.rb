@@ -662,9 +662,11 @@
 # 6kyu Replace With Alphabet Position
 
 # def alphabet_position(text)
-  # alphabet = [*('a'..'z')]
-  # strings = text.downcase.chars
-  # strings.select{ |str| alphabet.include?(str) }.empty? ? "" : strings.each_with_index { |k, v| alphabet.include?(k) ? k : strings.delete_at(v) }.map { |str| alphabet.inde(str)+ 1 if alphabet.index(str) != nil }.select { |n| n != nil }.join(' ')
+#   alphabet = [*('a'..'z')]
+#   strings = text.downcase.chars
+#   strings.select{ |str| alphabet.include?(str) }.empty? ? "" :
+#     strings.each_with_index { |k, v| alphabet.include?(k) ? k :
+#     strings.delete_at(v) }.map { |str| alphabet.index(str)+ 1 if alphabet.index(str) != nil }.select { |n| n != nil }.join(' ')
 # end
 
 # p alphabet_position("The sunset sets at twelve o' clock.") == "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11"
@@ -963,7 +965,7 @@
 # p pig_it('Pig latin is cool ?') == 'igPay atinlay siay oolcay ?'
 # p pig_it('This is my string') == 'hisTay siay ymay tringsay'
 
-# 
+#
 # /(\w)(\w+)*/ ２文字以上の英数字かアンダーバーの場合、 '\2\1ay' 1つ目のマッチに'ay'を加えて2つ目のマッチと入れ替える
 
 
@@ -1560,6 +1562,69 @@
 #   p occurences
 #   (occurrences[item] += 1) > max_e
 # end
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.63
+# 6kyu Valid Braces
+
+# def validBraces(braces)
+#   open = 0
+#   opens = []
+#   braces.chars.each do |char|
+#     opens << char if char == "(" || char == "{" || char == "["
+#     open += 1 if char == "(" || char == "{" || char == "["
+#     open -= 1 if char == ")" ||  char == "}" || char == "]"
+#     return false if open < 0
+#     if char == ")" || char == "}"|| char == "]"
+#       if opens.last + char == "()" || opens.last + char == "{}" || opens.last + char == "[]"
+#         opens.pop
+#       else
+#         return false
+#       end
+#     end
+#   end
+#   open == 0 && opens == [] ? true : false
+# end
+
+# p validBraces( "()" ) == true
+# p validBraces( "[(])" ) == false
+# p validBraces("(){}[]") == true
+# p validBraces("([{}])") == true
+# p validBraces("(}")  == false
+# p validBraces("[(])")  == false
+# p validBraces("[({})](]") ==  false
+
+# 一番短い。 (){}[]を外側から徐々に消していく
+# while braces.gsub!(/(\(\)|\[\]|\{\})/,'') do; end
+# braces.empty?
+
+# 面白い回答 カッコをペアで扱うことで、falseの判定が簡単にできる
+# pairs = {")" => "(", "]" => "[", "}" => "{"}
+# stack = []
+# braces.each_char {|c|
+#   case c
+#     when "(", "[", "{" then stack << c
+#     when ")", "]", "}" then return false if stack.pop != pairs[c]
+#   end
+# }
+# stack.empty?
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.64
+# 6kyu Does my number look big in this?
+
+# def narcissistic?(value)
+#   digits = value.digits
+#   digits.map { |n| n ** digits.size }.sum == value
+# end
+
+# p narcissistic?(5) == true
+# p narcissistic?(153) == true
+# p narcissistic?(1633) == false
 
 
 # --------------------------------------------------------------------------------------------------
