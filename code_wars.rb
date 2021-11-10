@@ -963,7 +963,7 @@
 # p pig_it('Pig latin is cool ?') == 'igPay atinlay siay oolcay ?'
 # p pig_it('This is my string') == 'hisTay siay ymay tringsay'
 
-# text.gsub(/(\w)(\w+)*/, '\2\1ay') 一番短い。１文字目と２文字目以降で分割してマッチさせる。
+# 
 # /(\w)(\w+)*/ ２文字以上の英数字かアンダーバーの場合、 '\2\1ay' 1つ目のマッチに'ay'を加えて2つ目のマッチと入れ替える
 
 
@@ -1130,7 +1130,7 @@
 # input.sub(/\d*$/) { |n| n.empty? ? 1 : n.succ } 一番短い
 # .sub ...マッチした最初の部分を文字列 replace で置き換える
 
-# .succ ... 文字列の後継の文字列を返すメソッド
+# .succメソッド ... 文字列の後継の文字列を返す
 #  例   https://hackmd.io/@zuby/BklVXzZ6w
 # "a".succ   => "b"
 # "100".succ => "101"
@@ -1535,6 +1535,31 @@
 # strarr.each_cons(k).map(&:join).max_by(&:length) || ""
 
 # k > strarr.size || k <= 0 ? '' : strarr.each_cons(k).map(&:join).max_by(&:size)
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.62
+# 6kyu Delete occurrences of an element if it occurs more than n times
+
+# def delete_nth(order,max_e)
+  # new_list = []
+  # order.each { |n| new_list << n if new_list.count(n) < max_e }
+  # new_list
+# end
+
+# p delete_nth([20,37,20,21], 1) == [20,37,21]
+# p delete_nth([1,1,3,3,7,2,2,2,2], 3) == [1, 1, 3, 3, 7, 2, 2, 2]
+
+# 一番短い
+# occurrences = Hash.new(0)
+# order.reject { |item| (occurrences[item] += 1) > max_e }
+
+# occurencesにハッシュとして各値の数を記録していき、max_eを超えていたら削除している
+# order.reject! do |item|
+#   p occurences
+#   (occurrences[item] += 1) > max_e
+# end
 
 
 # --------------------------------------------------------------------------------------------------
