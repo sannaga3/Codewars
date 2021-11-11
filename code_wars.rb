@@ -1628,3 +1628,26 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.65
+# 6kyu Persistent Bugger
+
+# def persistence(n)
+#   times = 0
+#   while n.digits.size != 1 do
+#     n = n.digits.inject(:*)
+#     times += 1
+#   end
+#   times
+# end
+
+# p persistence(39) == 3
+# p persistence(4) == 0
+# p persistence(25) == 2
+# p persistence(999) == 4
+# p persistence(444) == 3
+
+# n < 10 == 0 になるまで n.digits.reduce(&:*) を繰り返している。０になった時、1 + 1 + 0 のように、繰り返した分だけ 1 が加算されて返る。
+# n < 10 ? 0 : 1 + persistence(n.digits.reduce(&:*)) 一番短い
+
+# --------------------------------------------------------------------------------------------------
