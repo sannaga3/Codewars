@@ -1650,4 +1650,56 @@
 # n < 10 == 0 になるまで n.digits.reduce(&:*) を繰り返している。０になった時、1 + 1 + 0 のように、繰り返した分だけ 1 が加算されて返る。
 # n < 10 ? 0 : 1 + persistence(n.digits.reduce(&:*)) 一番短い
 
+
+# --------------------------------------------------------------------------------------------------
+
+# no.66
+# 6kyu Sequences and Series
+
+# def get_score(n)
+  # add_score = [*(1..n)].inject(0) { |sum, score| sum + score * 50 }
+# end
+
+# p get_score(1) == 50
+# p get_score(2) == 150
+# p get_score(3) == 300
+# p get_score(4) == 500
+# p get_score(5) == 750
+
+# (1..n).inject(:+) * 50 一番短い。 1..nを足してから50をかける
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.67
+# 6kyu Sequences and Series
+
+# def f(s)
+#   sts = ""
+#   list = []
+#   s.chars.each do |st|
+#     sts += st
+#     count = s.scan(sts).size
+#     if s.scan(sts).join == s && sts.size > 1 && count > 1
+#       list << [sts, count]
+#     end
+#   end
+#   list.size == 0 ? result = [s, 1] : list.size == 1 ? result = list.first : result = list.map { |l| l[1] }.max
+#   result = list.select { |r| r[1] == result }.last if list.size > 1
+#   result
+# end
+
+# p f("ababab") == ["ab", 3]
+# p f("abcde") == ["abcde", 1]
+# p f("abceabctabc")
+# p f("ababeeabab")
+
+# 対象の文字列を繰り返して全体の文字列と一致する。この条件に最初から気づけていれば短く書けたかもしれない。
+
+# わかりやすい
+# uniq_char = s.chars.uniq.join('')
+# split_array = s.scan(uniq_char)
+# [split_array.length > 1 ? uniq_char : s,split_array.length]
+
+
 # --------------------------------------------------------------------------------------------------
