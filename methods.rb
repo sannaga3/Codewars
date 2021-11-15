@@ -27,6 +27,7 @@
 # betweenメソッド...レシーバが第一引数（min）、第二引数(max)の範囲ないにあればtrueを返す。文字列の場合も同じ。
 # each_consメソッド...要素を引数の値ごとに区切って繰り返して返す(Enumeratorとして返る)。(1..4).each_cons(2).to_a => [[1, 2], [2, 3], [3, 4]]
 # trメソッド...第一引数の文字列を第二引数の文字列に変換する。  ROT13への変更  string.tr("A-Za-z", "N-ZA-Mn-za-m")
+# any?メソッド...すべての要素が偽の場合 false を返す。真の要素があればその時点で true を返す。
 
 
 # 正規表現チートシート https://murashun.jp/article/programming/regular-expression.html

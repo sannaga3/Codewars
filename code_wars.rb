@@ -1723,3 +1723,50 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.69
+# 6kyu Phone Number
+
+# def validPhoneNumber(phoneNumber)
+  # phoneNumber == phoneNumber.scan(/\(\d{3}\)\s\d{3}-\d{4}/).first
+# end
+
+# p validPhoneNumber("(123) 456-7890") == true
+
+# 参考になる書き方。!!でbooleanとして返す
+# !!phoneNumber[/\A\(\d{3}\)\s\d{3}-\d{4}\z/]
+# !!(phoneNumber =~ /^\(\d{3}\) \d{3}-\d{4}$/)
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.70
+# 6kyu Which are in?
+
+# def in_array(array1, array2)
+#   result = []
+#   array1.select do |a1|
+#     array2.each do |a2|
+#       result << a1 if a2.include?(a1)
+#       break if a2.include?(a1)
+#     end
+#   end
+#   result.sort
+# end
+
+# a1 = ["arp", "live", "strong"]
+# a2 = ["lively", "alive", "harp", "sharp", "armstrong"]
+# p in_array(a1, a2) == ["arp", "live", "strong"]
+# a1 = ["tarp", "mice", "bull"]
+# p in_array(a1, a2) == []
+
+
+# array1.select { |st| array2.select { |s| s.include?(st) }}        上手くいかなかったコード
+# result = array1.select { |st| array2.select { |s| s =~ /#{st}/ }} 上手くいかなかったコード
+
+# 一番短い
+# array1.select{|s| array2.any?{|w| w.include?(s) } }.sort
+# any?メソッド...すべての要素が偽の場合 false を返す。真の要素があればその時点で true を返す。
+
+
+# --------------------------------------------------------------------------------------------------
