@@ -30,6 +30,17 @@
 # any?メソッド...すべての要素が偽の場合 false を返す。真の要素があればその時点で true を返す。
 
 
+# アスキーコードとビット数に関して  https://e-words.jp/w/ASCII.html
+# p [*('a'..'z')].map(&:sum)
+# p [*('A'..'Z')].map(&:sum)
+# p [*('1'..'11')].map(&:sum)
+# p 'a'.sum == '10'.sum
+# p ['a', 'b', 'c'].map { |x| p x.sum - 96 }.sum
+# p ['ab'].map { |x| x.sum - 96 * 2 }.sum
+# p ['あ', 'い', 'う', 'ん'].map(&:sum)
+# p ['ア', 'イ', 'ウ', 'ン'].map(&:sum)
+
+
 # 正規表現チートシート https://murashun.jp/article/programming/regular-expression.html
 
 # 記号のエスケープ

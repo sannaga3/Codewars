@@ -1770,3 +1770,33 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.71
+# 6kyu Consonant value
+
+# def solve(s)
+  # s.gsub!(/[(a)(i)(u)(e)(o)]/, ' ').split(' ').map(&:chars).map { |st| st.map { |str| [*('a'..'z')].index(str) + 1 } }.map(&:sum).max
+# end
+
+# p solve("zodiac") == 26
+# p solve("chruschtschov") == 80
+# p solve("khrushchev") == 38
+# p solve("strength") == 57
+# p solve("catchphrase") == 73
+# p solve("twelfthstreet") == 103
+# p solve("mischtschenkoana") == 80
+
+# s.split(/[aeiou]/).map{|x| p x.sum - x.size * 96} 一番短い。
+
+# アスキーコードとビット数に関して  https://e-words.jp/w/ASCII.html
+# p [*('a'..'z')].map(&:sum)
+# p [*('A'..'Z')].map(&:sum)
+# p [*('1'..'11')].map(&:sum)
+# p 'a'.sum == '10'.sum
+# p ['a', 'b', 'c'].map { |x| p x.sum - 96 }.sum
+# p ['ab'].map { |x| x.sum - 96 * 2 }.sum
+# p ['あ', 'い', 'う', 'ん'].map(&:sum)
+# p ['ア', 'イ', 'ウ', 'ン'].map(&:sum)
+
+
+# --------------------------------------------------------------------------------------------------
