@@ -41,6 +41,9 @@
 # p ['ア', 'イ', 'ウ', 'ン'].map(&:sum)
 
 
+# sort_byメソッドのブロックに配列を指定すると、配列内の要素の順番で並び替える。 p "ababaaaabbbbbbbaaabba".chars.sort_by { |s| %w(b a).index(s) }
+
+
 # 正規表現チートシート https://murashun.jp/article/programming/regular-expression.html
 
 # 記号のエスケープ

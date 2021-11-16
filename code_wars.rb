@@ -1728,7 +1728,7 @@
 # 6kyu Phone Number
 
 # def validPhoneNumber(phoneNumber)
-  # phoneNumber == phoneNumber.scan(/\(\d{3}\)\s\d{3}-\d{4}/).first
+#   phoneNumber == phoneNumber.scan(/\(\d{3}\)\s\d{3}-\d{4}/).first
 # end
 
 # p validPhoneNumber("(123) 456-7890") == true
@@ -1797,6 +1797,53 @@
 # p ['ab'].map { |x| x.sum - 96 * 2 }.sum
 # p ['あ', 'い', 'う', 'ん'].map(&:sum)
 # p ['ア', 'イ', 'ウ', 'ン'].map(&:sum)
+
+
+# --------------------------------------------------------------------------------------------------
+
+
+# no.72
+# 5kyu Don't Drink the Water
+
+# def separate_liquids(glass)
+  # return [] if glass == []
+  # elements = glass.flatten
+  # return p ("O" * elements.count("O") + "A" * elements.count("A") + "W" * elements.count("W") + "H" * elements.count("H")).chars.map{ |st| Array.new(1, st)} if glass[0].size == 1
+  # ("O" * elements.count("O") + "A" * elements.count("A") + "W" * elements.count("W") + "H" * elements.count("H")).chars.each_slice(glass[0].size).to_a
+# end
+
+
+# p separate_liquids([['H', 'H', 'W', 'O'],['W','W','O','W'],['H','H','O','O']]) == [['O', 'O', 'O', 'O'],['W','W','W','W'],['H','H','H','H']]
+# p separate_liquids([['A','A','O','H'],['A', 'H', 'W', 'O'],['W','W','A','W'],['H','H','O','O']]) == [['O','O','O','O'],['A', 'A', 'A', 'A'],['W','W','W','W'],['H','H','H','H']]
+# p separate_liquids([['A','H','W','O']]) == [['O','A','W','H']]
+# p separate_liquids([['A'],['H'],['W'],['O']]) == [['O'],['A'],['W'],['H']]
+# p separate_liquids([]) == []
+
+# 一番簡単？
+  # return glass if glass.empty?
+  # glass
+  #   .flatten
+  #   .sort_by { |e| p %w(O A W H).index(e) }
+  #   .each_slice(Array(glass[0]).size)
+  #   .to_a
+
+# sort_byのブロックに配列を指定すると、その順番に並び替えてくれる。
+# p "ababaaaabbbbbbbaaabba".chars.sort_by { |s| %w(b a).index(s) }
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.73
+# 6kyu Playing with digits
+
+# def dig_pow(n, p)
+  # result = n.digits.reverse.each_with_index.map { |d, i| d ** (i + p) }.sum
+  # result % n == 0 ? result / n : -1
+# end
+
+# p dig_pow(89, 1) == 1
+# p dig_pow(92, 1) == -1
+# p dig_pow(46288, 3) == 51
 
 
 # --------------------------------------------------------------------------------------------------
