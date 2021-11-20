@@ -745,3 +745,16 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.77
+# 6kyu Bit Counting
+
+def count_bits(n)
+  n.to_s(2).count("1")
+end
+
+p count_bits(0) == 0
+p count_bits(4) == 1
+p count_bits(7) == 3
+p count_bits(9) == 2
+p count_bits(10) == 2
