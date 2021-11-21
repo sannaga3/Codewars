@@ -749,12 +749,48 @@
 # no.77
 # 6kyu Bit Counting
 
-def count_bits(n)
-  n.to_s(2).count("1")
-end
+# def count_bits(n)
+#   n.to_s(2).count("1")
+# end
 
-p count_bits(0) == 0
-p count_bits(4) == 1
-p count_bits(7) == 3
-p count_bits(9) == 2
-p count_bits(10) == 2
+# p count_bits(0) == 0
+# p count_bits(4) == 1
+# p count_bits(7) == 3
+# p count_bits(9) == 2
+# p count_bits(10) == 2
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.78
+# 6kyu Mexican Wave
+
+# def wave(str)
+#   result = []
+#   splited = str.chars.map { |st| str }
+#   splited.each_with_index do |k, v|
+#     k = k.chars
+#     k[v].upcase!
+#     result << k.join
+#   end
+#   result.delete(str)
+#   result
+# end
+
+# p wave("hello") == ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
+# p wave("codewars") == ["Codewars", "cOdewars", "coDewars", "codEwars", "codeWars", "codewArs", "codewaRs", "codewarS"]
+# p wave("") == []
+# p wave("two words") == ["Two words", "tWo words", "twO words", "two Words", "two wOrds", "two woRds", "two worDs", "two wordS"]
+# p wave(" gap ") == [" Gap ", " gAp ", " gaP "]
+
+# 一番わかりやすい。 str[0...idx] + char.upcase + str[idx+1..-1] で簡単に1文字だけを大文字にできる
+# result = []
+# chars = str.downcase.chars
+# chars.each_with_index do |char, idx|
+#   next if char == " "
+#   result << str[0...idx] + char.upcase + str[idx+1..-1]
+# end
+# result
+
+
+# --------------------------------------------------------------------------------------------------
