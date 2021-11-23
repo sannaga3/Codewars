@@ -794,3 +794,74 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.79
+# 6kyu World Bits War
+
+# def bits_war(numbers)
+#   odd_or_even = numbers.partition { |n| n.odd? }
+#   odd_or_even.map! { |s| s.map { |n| n.to_s(2) }.map { |n| n[0] == "-" ? n.chars.count("1") * -1 : n.chars.count("1") }.sum }
+#   odd_or_even[0] == odd_or_even[1] ? "tie" : odd_or_even[0] > odd_or_even[1] ? "odds win" : "evens win"
+# end
+
+# p bits_war([1,5,12]) == "odds win"
+# p bits_war([7,-3,20]) == "evens win"
+# p bits_war([7,-3,-2,6]) == "tie"
+# p bits_war([-3,-5]) == "evens win"
+# p bits_war([]) == "tie"
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.80
+# 6kyu World Bits War
+
+# module Converter
+#   def self.to_ascii(hex)
+#     hex.chars.each_slice(2).to_a.map(&:join).map { |str| str.hex }.map(&:chr).join
+#   end
+
+#   def self.to_hex(ascii)
+#     ascii.chars.map { |str| str.ord }.map { |n| n.to_s(16) }.join
+#   end
+# end
+
+# str = "Look mom, no hands"
+# hex = "4c6f6f6b206d6f6d2c206e6f2068616e6473"
+
+# p Converter.to_hex(str) == hex
+# p Converter.to_ascii(hex) == str
+
+
+# 一番簡単
+# def self.to_ascii(hex)
+#   [hex].pack("H*")
+# end
+
+# def self.to_hex(ascii)
+#  ascii.unpack("H*")[0]
+# end
+
+# packメソッド...配列の内容を template で指定された文字列にしたがって、バイナリとしてパックした文字列を返す。
+# unpackメソッド...packメソッドの逆
+# p "Look mom, no hands".unpack("H*")[0]
+# p ["4c6f6f6b206d6f6d2c206e6f2068616e6473"].pack("H*")
+
+# unpack("H*")ではShift_JISに変換されているっぽい
+# p "0".unpack("H*")
+# p "1".unpack("H*")
+# p "2".unpack("H*")
+# p "3".unpack("H*")
+# p "9".unpack("H*")
+# p "A".unpack("H*")
+# p "P".unpack("H*")
+
+# p [97, 98, 99].pack("U")
+# p [97, 98, 99].pack("U*")
+# p "abc".each_codepoint { |s| p s }
+
+# p "1".encoding
+# p 'abcd'.unpack('H*').first == ['61626364'].pack('H*')
+
+
+# --------------------------------------------------------------------------------------------------

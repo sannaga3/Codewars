@@ -30,7 +30,20 @@
 # any?メソッド...すべての要素が偽の場合 false を返す。真の要素があればその時点で true を返す。
 # key?メソッド...レシーバに引数が含まれているか確かめる
 # values_atメソッド...レシーバに引数（key）が含まれていればvalueに変換する。引数に複数のkeyを設定した場合、返り値は配列になる。
+# each_sliceメソッド...要素を引数の値毎に区切る                 (1..10).each_slice(3) {|a| p a}  =>  [1, 2, 3] [4, 5, 6] [7, 8, 9] [10]
+# each_consメソッド...要素を１ずつずらしていき引数の値毎に区切る。 (1..10).each_cons(3){|v| p v }  =>  # => [1, 2, 3] [2, 3, 4] [3, 4, 5] [4, 5, 6] [8, 9, 10]
 
+# packできる型一覧  https://docs.ruby-lang.org/ja/latest/method/Array/i/pack.html
+# 文字列と整数の相互変換について  https://qiita.com/masakielastic/items/9befff6f05afdcd157f2
+# packメソッド...配列の内容を template で指定された文字列にしたがって、バイナリとしてパックした文字列を返す。
+# unpackメソッド...packメソッドの逆
+
+
+# 文字コードの調べ方 https://qiita.com/ima1zumi/items/28ef13f5af3d9afdeaf3
+# p "abc".unpack("U*") => [97, 98, 99]   文字列からasciiコードへの変換
+# p [97, 98, 99].pack("U") => "a"
+# p [97, 98, 99].pack("U*") => "abc"
+# p "abc".each_codepoint { |s| p s } => 97 98 99     文字列のコードポイントを調べることができる
 
 # アスキーコードとビット数に関して  https://e-words.jp/w/ASCII.html
 # p [*('a'..'z')].map(&:sum)
@@ -42,7 +55,7 @@
 # p ['あ', 'い', 'う', 'ん'].map(&:sum)
 # p ['ア', 'イ', 'ウ', 'ン'].map(&:sum)
 
-
+# 並び替えの順番指定
 # sort_byメソッドのブロックに配列を指定すると、配列内の要素の順番で並び替える。 p "ababaaaabbbbbbbaaabba".chars.sort_by { |s| %w(b a).index(s) }
 
 
