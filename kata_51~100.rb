@@ -847,7 +847,7 @@
 # p "Look mom, no hands".unpack("H*")[0]
 # p ["4c6f6f6b206d6f6d2c206e6f2068616e6473"].pack("H*")
 
-# unpack("H*")ではShift_JISに変換されているっぽい
+# unpack("H*")ではShift_JISに変換されているっぽい  https://seiai.ed.jp/sys/text/java/shiftjis_table.html
 # p "0".unpack("H*")
 # p "1".unpack("H*")
 # p "2".unpack("H*")
@@ -862,6 +862,75 @@
 
 # p "1".encoding
 # p 'abcd'.unpack('H*').first == ['61626364'].pack('H*')
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.81
+# 6kyu Swap Case Using N
+
+# def spec_swap(s, n)
+  # bit = n.to_s(2)
+  # s_size = s.size
+  # bit_size = bit.chars.size
+  # bits = 0
+  # bits_i = 0
+
+  # if s_size > bit_size
+  #   bits = bit * (s_size / bit_size)
+  #   surplus = s_size % bit_size
+  #   bits += bit[0..(surplus - 1)] if s_size % bit_size != 0
+  #   new_bits = bits.chars
+  # else
+  #   bits = bit
+  #   new_bits = bits.chars
+  # end
+  # bits.chars.each_with_index.map do |k, v|
+  #   break if !s.chars[v]
+  #   if s.chars[v] == ' ' || !s.chars[v].scan(/([\?|\!|\,|\.|\\|\/|\+|\-|\:|\;])/).empty?
+  #     new_bits.insert(bits_i , ' ')
+  #   end
+  #   bits_i += 1
+  # end
+
+  # result = []
+  # s.chars.each_with_index do |k, v|
+  #   if new_bits[v] == "1" && s.chars[v] != ' ' && s.chars[v].scan(/([\?|\!|\,|\.|\\|\/|\+|\-|\:|\;])/).empty?
+  #     if s[v].ord < 96
+  #       result << k.downcase
+  #     else
+  #       result << k.upcase
+  #     end
+  #   else
+  #     result << k
+  #   end
+  # end
+  # result.join
+# end
+
+# p spec_swap("Hello world!", 11) == "heLLO wORLd!"
+# p spec_swap("the quick broWn fox leapt over the fence", 9) == "The QUicK BrowN foX LeaPT ovER thE FenCE"
+                                                              #  100 11001 10011 001 10011 0011 001 10011
+# p spec_swap("eVerybody likes ice cReam", 85) == "EVErYbODy LiKeS IcE creAM"
+# p spec_swap("gOOd MOrniNg", 7864) == "GooD MorNIng"
+# p spec_swap("how are you today?", 12345) == "HOw are yoU TOdaY?"
+# p spec_swap("the lord of the rings", 0) == "the lord of the rings"
+# p spec_swap("", 11345) == ""
+
+# random test
+# p spec_swap("W/eNHszZK.Y   GuV p frxQpAe aMyoQ !,  f ,mIUZxTIn DUFzbtD F fKDr.cm l,vHCGGFDrYfbh ITiJkXI p Kfge NsFKHooPFOyaGm xKn!/wOCIy  hS iD jNXZ RTJXE! LEkk Et  oMvSH uyqykn wiVT", 85711) == "w/enHsZzk.Y   gUV p FRXqPAE aMYOq !,  f ,MiUZXtiN dUfzbTd f fkdr.cM L,VhcGgFDRyFbH iTijKxi P KFge nSfKhOoPfoYAgm XKn!/WocIY  HS id Jnxz RtJXe! lekK et  omVsh UyQykN WIVt"
+
+# 一番短い
+# mask = ('%b' % n).chars.cycle
+# s.chars.map { |c| c =~ /[a-z]/i && mask.next == '1' ? c.swapcase : c }.join
+# cycleメソッド...レシーバの要素を引数の回数繰り返しブロックを呼び出す。引数がなければ無限に続く。
+# nextメソッド...レシーバの次の要素を呼び出す。
+# swapcaseメソッド...文字列の大文字小文字を入れ替える
+
+# ユニーク？
+# bs = n.digits(2).reverse.map(&:nonzero?).cycle
+# s.gsub(/\p{L}/){ |c| bs.next ? c.swapcase : c }
+# nonzeroメソッド...自身がゼロの時 nil を返し、非ゼロの時 self を返す。
 
 
 # --------------------------------------------------------------------------------------------------

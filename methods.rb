@@ -35,8 +35,14 @@
 
 # packできる型一覧  https://docs.ruby-lang.org/ja/latest/method/Array/i/pack.html
 # 文字列と整数の相互変換について  https://qiita.com/masakielastic/items/9befff6f05afdcd157f2
+# shift-jisについて  https://seiai.ed.jp/sys/text/java/shiftjis_table.html
 # packメソッド...配列の内容を template で指定された文字列にしたがって、バイナリとしてパックした文字列を返す。
 # unpackメソッド...packメソッドの逆
+
+# cycleメソッド...レシーバの要素を引数の回数繰り返しブロックを呼び出す。引数がなければ無限に続く。
+# nextメソッド...レシーバの次の要素を呼び出す。
+# swapcaseメソッド...文字列の大文字小文字を入れ替える
+# nonzeroメソッド...自身がゼロの時 nil を返し、非ゼロの時 self を返す。
 
 
 # 文字コードの調べ方 https://qiita.com/ima1zumi/items/28ef13f5af3d9afdeaf3
