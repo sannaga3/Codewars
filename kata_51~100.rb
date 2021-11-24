@@ -934,3 +934,47 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.82
+# 6kyu Count the divisible numbers
+
+# require 'benchmark'
+
+# result = Benchmark.realtime do
+  # def divisible_count(x, y, k)
+  #   y / k - (x - 1) / k
+
+    # 値が１ズレることがある
+    # first = (x..y).find { |n| n % k == 0 }
+    # return 0 if first == nil
+    # r = (first..y).size / k
+    # r += 1 if y % k == 0
+    # r
+
+    # タイムオーバー
+    # list = [first]
+    # while (first + k) <= y
+    #   list << first += k
+    # end
+    # list.size
+
+    # タイムオーバー
+    # n = 1
+    # while (first + k) <= y
+    #   first += k
+    #   n += 1
+    # end
+    # n
+
+    # タイムオーバー
+    # (x..y).select { |n| n % k == 0 }.size
+  # end
+# end
+# puts "処理時間 #{result}s"
+
+# p divisible_count(6, 11, 2) == 3
+# p divisible_count(6, 12, 2) == 4
+# p divisible_count(5, 13, 2) == 4
+
+
+# --------------------------------------------------------------------------------------------------
