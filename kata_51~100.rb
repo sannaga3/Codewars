@@ -814,7 +814,7 @@
 # --------------------------------------------------------------------------------------------------
 
 # no.80
-# 6kyu World Bits War
+# 6kyu ASCII hex converter
 
 # module Converter
 #   def self.to_ascii(hex)
@@ -975,6 +975,53 @@
 # p divisible_count(6, 11, 2) == 3
 # p divisible_count(6, 12, 2) == 4
 # p divisible_count(5, 13, 2) == 4
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.83
+# 7kyu Disemvowel Trolls
+
+# def disemvowel(str)
+#   str.gsub(/[aiueo]/i, "")
+# end
+
+# p disemvowel("This website is for losers LOL!") == "Ths wbst s fr lsrs LL!"
+# str.delete "aAeEiIoOuU" でもOK
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.84
+# 7kyu Highest and Lowest
+
+# def high_and_low(numbers)
+#   array = numbers.split(' ').map(&:to_i)
+#   "#{array.max} #{array.min}"
+# end
+
+# p high_and_low("8 3 -5 42 -1 0 0 -9 4 7 4 -4") == "42 -9"
+
+# numbers.split.map(&:to_i).minmax.reverse.join(' ')  一番短い
+# minmaxメソッド...最小値と最大値を配列として返す %w[1 2 3 4 5].minmax  => ["1", "5"]   %w[a b c d e].minmax  => ["a", "e"]
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.85
+# 7kyu Exes and Ohs
+
+# def XO(str)
+#   str.scan(/x/i).count == str.scan(/o/i).count
+# end
+
+# p XO('xo') == true
+# p XO('XO') == true
+# p XO('xo0') == true
+# p XO('xxxoo') == false
+# p XO("xxOo") == true
+
+# str.count('Xx') == str.count('oO') 一番簡単
 
 
 # --------------------------------------------------------------------------------------------------
