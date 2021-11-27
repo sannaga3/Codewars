@@ -1025,3 +1025,92 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.86
+# 8kyu ASCII Total
+
+# def uni_total(string)
+#   string.chars.map(&:ord).sum
+# end
+
+# p uni_total("a") == 97
+# p uni_total("b") ==  98
+# p uni_total("c") == 99
+# p uni_total("") == 0
+# p uni_total("aaa") == 291
+# p uni_total("abc") == 294
+# p uni_total("Mary Had A Little Lamb") == 1873
+# p uni_total("Mary had a little lamb") == 2001
+# p uni_total("CodeWars rocks") == 1370
+# p uni_total("And so does Strive") == 1661
+
+# string.sum で良かった
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.87
+# 7kyu String ends with?
+
+# def solution(str, ending)
+  # str.match(/#{ending}$/).to_s == ending ダメだった答え。
+
+  # ending.reverse! == str.reverse![0..(ending.length - 1)]
+  # str.slice(-(ending.length), ending.length) == ending
+# end
+
+# p solution('abc', 'bc') == true
+# p solution(':-)', ':-(') == false
+
+# str.end_with?(ending) 一番簡単
+# end_withメソッド...レシーバの最後が引数で終わっていればtrueを返す。
+
+# str.match? /#{Regexp.quote(ending)}\z/
+# quoteメソッド...正規表現の中で特別な意味を持つ文字の直前にエスケープ文字(バックスラッシュ)を挿入した文字列を返す。
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.88
+# 8kyu Return Negative
+
+# def make_negative(num)
+  # num < 1 ? num : -num
+
+  # -num.abs
+# end
+
+# p make_negative(42) == -42
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.89
+# kyu Return Negative
+
+# def is_triangular(t)
+#   i = 0
+#   while i <= t
+#    return true if i * (i + 1) / 2 == t
+#     i += 1
+#   end
+#   false
+# end
+
+# p is_triangular(1) ==  true
+# p is_triangular(3) ==  true
+# p is_triangular(6) ==  true
+# p is_triangular(10) ==  true
+# p is_triangular(15) ==  true
+# p is_triangular(21) ==  true
+# p is_triangular(28) ==  true
+# p is_triangular(2) == false
+# p is_triangular(7) == false
+# p is_triangular(14) == false
+# p is_triangular(27) == false
+
+# (Math.sqrt(8 * t + 1) % 1).zero? 一番短い。平方根を求めて１で割った時余りが出るかどうか。
+# sqrtメソッド...非負整数 n の整数の平方根を返す。小数点以下は切り捨て。Integer.sqrt(24) # => 4  Integer.sqrt(25) # => 5
+
+
+# --------------------------------------------------------------------------------------------------

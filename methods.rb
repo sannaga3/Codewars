@@ -45,6 +45,9 @@
 # swapcaseメソッド...文字列の大文字小文字を入れ替える
 # nonzeroメソッド...自身がゼロの時 nil を返し、非ゼロの時 self を返す。
 # minmaxメソッド...最小値と最大値を配列として返す %w[1 2 3 4 5].minmax  => ["1", "5"]   %w[a b c d e].minmax  => ["a", "e"]
+# end_withメソッド...レシーバの最後が引数で終わっていればtrueを返す。
+# quoteメソッド...正規表現の中で特別な意味を持つ文字の直前にエスケープ文字(バックスラッシュ)を挿入した文字列を返す。
+# sqrtメソッド...非負整数 n の整数の平方根を返す。小数点以下は切り捨て。Integer.sqrt(24) # => 4  Integer.sqrt(25) # => 5
 
 
 # 文字コードの調べ方 https://qiita.com/ima1zumi/items/28ef13f5af3d9afdeaf3
