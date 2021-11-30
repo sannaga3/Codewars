@@ -1150,3 +1150,57 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.92
+# 7kyu Largest Square Inside A Circle
+
+# def area_largest_square(r)
+#   (r * 2) ** 2 / 2
+# end
+
+# p area_largest_square(5) == 50
+# p area_largest_square(7) == 98
+# p area_largest_square(50) == 5000
+
+# --------------------------------------------------------------------------------------------------
+
+# no.93
+# 7kyu Power of two
+
+# def power_of_two?(x)
+  # return false if x == 0
+  # if x % 100 == 0
+  #   x /= 100
+  #   power_of_two?(x)
+  # elsif x % 2 == 0
+  #   x /= 2
+  #   power_of_two?(x)
+  # else
+  #   x == 1 ? true : false
+  # end
+# end
+
+# p power_of_two?(2) == true
+# p power_of_two?(4096) == true
+# p power_of_two?(5) == false
+# p power_of_two?(33554432) == true
+
+# 一番簡単
+# (0..x).each do |num|
+#   return true if 2 ** num == x
+#   return false if 2 ** num >= x
+# end
+
+# x.bit_length > (x - 1).bit_length 一番短い。2の累乗の時に桁が変わるのをbit_lengthで確認している。
+# bit_lengthメソッド...selfを表すのに必要なビット数を返す。0 や -1 の場合は 0 を返す
+
+# p 1.bit_length
+# p 2.bit_length
+# p 3.bit_length
+# p 5.bit_length
+# p 10.bit_length
+# p 11.bit_length
+# p 12.bit_length
+
+
+# --------------------------------------------------------------------------------------------------
