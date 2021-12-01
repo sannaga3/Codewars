@@ -1186,6 +1186,9 @@
 # p power_of_two?(33554432) == true
 
 # 一番簡単
+# x.to_s(2).scan(/1/).length == 1
+
+# これも簡単
 # (0..x).each do |num|
 #   return true if 2 ** num == x
 #   return false if 2 ** num >= x
@@ -1201,6 +1204,18 @@
 # p 10.bit_length
 # p 11.bit_length
 # p 12.bit_length
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.94
+# 7kyu Perimeter sequence
+
+# def perimeter_sequence(a, n)
+#   a * n * 4
+# end
+
+# perimeter_sequence(1,3) == 12
 
 
 # --------------------------------------------------------------------------------------------------
