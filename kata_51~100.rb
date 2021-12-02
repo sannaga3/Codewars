@@ -1219,3 +1219,47 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.95
+# 7kyu Sum of a sequence
+
+# def sequence_sum(begin_number, end_number, step)
+  # numbers = []
+  # while begin_number <= end_number
+  #   numbers << begin_number
+  #   begin_number += step
+  # end
+  # numbers.sum
+# end
+
+# p sequence_sum(2, 6, 2) == 12
+# p sequence_sum(1, 5, 1) == 15
+# p sequence_sum(1, 5, 3) == 5
+# p sequence_sum(0, 15, 3) == 45
+# p sequence_sum(16, 15, 3) == 0
+# p sequence_sum(2, 24, 22) == 26
+# p sequence_sum(2, 2, 2) == 2
+# p sequence_sum(2, 2, 1) == 2
+# p sequence_sum(1, 15, 3) == 35
+# p sequence_sum(15, 1, 3) == 0
+
+# (begin_number..end_number).step(step).reduce(0, :+) 一番簡単
+# stepメソッド...self からはじめ step を足しながら limit を越える前までブロックを繰り返す
+# begin_number.step(end_number, step).sum リファレンスマニュアル的な書き方。
+
+# --------------------------------------------------------------------------------------------------
+
+# no.96
+# 7kyu Build a square
+
+# def generate_shape(n)
+  # (1..n).map { |i| "#{'+' * n}\n"}.join.chomp
+# end
+
+# p generate_shape(3) == "+++\n+++\n+++"
+# p generate_shape(8) == "++++++++\n++++++++\n++++++++\n++++++++\n++++++++\n++++++++\n++++++++\n++++++++"
+
+# ("#{"+" * n}\n" * n).chop  mapメソッドは必要なかった。
+
+
+# --------------------------------------------------------------------------------------------------
