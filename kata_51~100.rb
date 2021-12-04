@@ -1263,3 +1263,27 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.97
+# 7kyu Greatest common divisor
+
+# def mygcd(x,y)
+#   min_max = [x, y].minmax
+#   min_max[1].gcd(min_max[0])
+
+  # タイムオーバー
+  # min_max = [x, y].minmax
+  # return min_max[0] if min_max[1] % min_max[0] == 0
+  # numbers = (1..(min_max[0] / 2)).select { |n| min_max[0] % n == 0 }.reverse
+  # numbers.find { |n| min_max[1] % n == 0 }
+# end
+
+# p mygcd(30,12) == 6
+# p mygcd(8,9) == 1
+# p mygcd(1,1) == 1
+
+# gcdメソッド... レシーバと引数(整数)の最大公約数を返す。
+# x.gcd y で良かった。
+
+
+# --------------------------------------------------------------------------------------------------

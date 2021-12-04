@@ -50,6 +50,7 @@
 # sqrtメソッド...非負整数 n の整数の平方根を返す。小数点以下は切り捨て。Integer.sqrt(24) # => 4  Integer.sqrt(25) # => 5
 # bit_lengthメソッド...selfを表すのに必要なビット数を返す。0 や -1 の場合は 0 を返す
 # stepメソッド...self からはじめ step を足しながら limit を越える前までブロックを繰り返す    10.step(6, -1){|n| p n} => 10 9 8 7 6
+# gcdメソッド... レシーバと引数(整数)の最大公約数を返す。
 
 
 # 文字コードの調べ方 https://qiita.com/ima1zumi/items/28ef13f5af3d9afdeaf3
