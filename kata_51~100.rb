@@ -1287,3 +1287,50 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.98
+# 7kyu Search for letters
+
+# def change a
+#   result = "00000000000000000000000000".chars
+#   a.chars.each do |st|
+#     if st =~ /[a-z]/i
+#       index = st.downcase.ord - 97
+#       result[index] = "1"
+#     end
+#   end
+#   result.join
+# end
+
+# p change("a **&  bZ") == "11000000000000000000000001"
+# p change('Abc e  $$  z') == "11101000000000000000000001"
+# p change("!!a$%&RgTT") == "10000010000000000101000000"
+# p change("") == "00000000000000000000000000"
+# p change("abcdefghijklmnopqrstuvwxyz") == "11111111111111111111111111"
+# p change("aaaaaaaaaaa") == "10000000000000000000000000"
+# p change("&%&%/$%$%$%$%GYtf67fg34678hgfdyd") == "00010111000000000001000010"
+
+# ('a'..'z').to_a.map { |x| a.downcase.include?(x) ? 1 : 0 }.join  一番簡単
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.99
+# 7kyu Single digit
+
+# def single_digit(n)
+#   n < 10 ? n : single_digit(n.to_s(2).count("1"))
+# end
+
+# p single_digit(5) == 5
+# p single_digit(999) == 8
+# p single_digit(1234444123) == 1
+# p single_digit(443566) == 2
+# p single_digit(565656565) == 3
+# p single_digit(4868872) == 8
+# p single_digit(234234235) == 2
+# p single_digit(567448) == 7
+# p single_digit(10000000000) == 3
+
+
+# --------------------------------------------------------------------------------------------------
