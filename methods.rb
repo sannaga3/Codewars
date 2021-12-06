@@ -92,3 +92,12 @@
 
 # 文字数を指定して取得する。 \w アルファベット・数字・アンダーバー、 {n,} 最小文字数
 # string.gsub(/\w{5,}/, &:reverse)
+
+
+# Integerの & は bitの論理積
+# https://docs.ruby-lang.org/ja/latest/class/Integer.html#I_--26
+# https://www.javadrive.jp/ruby/num/index6.html
+# 1011  = 11
+# 1110  = 14
+# ------------
+# 1010  = 10

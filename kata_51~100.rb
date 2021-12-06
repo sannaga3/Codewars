@@ -1334,3 +1334,49 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.100
+# 7kyu Shared Bit Counter
+
+# def shared_bits(a, b)
+  # a_binary = a.to_s(2).chars.reverse
+  # b_binary = b.to_s(2).chars.reverse
+  # count = 0
+  # a_binary.each_with_index{ |b, i| count += 1 if b_binary[i] && b == b_binary[i] && b == '1'}
+  # count >= 2 ? true : false
+# end
+
+# p shared_bits(1, 2) == false
+# p shared_bits(16, 8) == false
+# p shared_bits(1, 1) == false
+# p shared_bits(2, 3) == false
+# p shared_bits(7, 10) == false
+# p shared_bits(43, 77) ==  true
+# p shared_bits(7, 15) ==  true
+# p shared_bits(23, 7) ==  true
+
+# (a & b).to_s(2).count("1") > 1 一番簡単
+
+# integerの & は bitの論理積
+# https://docs.ruby-lang.org/ja/latest/class/Integer.html#I_--26
+# https://www.javadrive.jp/ruby/num/index6.html
+# 1011  = 11
+# 1110  = 14
+# ------------
+# 1010  = 10
+
+# p 1 & 2
+# p "1:2 #{1.to_s(2)} & #{2.to_s(2)}"
+# p 1 & 1
+# p 2 & 2
+# p 2 & 3
+# p "2:3 #{2.to_s(2)} & #{3.to_s(2)}"
+# p 3 & 1
+# p "3:1 #{3.to_s(2)} & #{1.to_s(2)}"
+# p 3 & 3
+# p 4 & 4
+# p [1, 2, 3] & [2, 3]
+# p [1] & [3]
+
+
+# --------------------------------------------------------------------------------------------------
