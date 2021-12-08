@@ -51,6 +51,7 @@
 # bit_lengthメソッド...selfを表すのに必要なビット数を返す。0 や -1 の場合は 0 を返す
 # stepメソッド...self からはじめ step を足しながら limit を越える前までブロックを繰り返す    10.step(6, -1){|n| p n} => 10 9 8 7 6
 # gcdメソッド... レシーバと引数(整数)の最大公約数を返す。
+# downtoメソッド...self から min まで 1 ずつ減らしながらブロックを繰り返し実行する。 3.downto(1) {|i| p i } => 321
 
 
 # 文字コードの調べ方 https://qiita.com/ima1zumi/items/28ef13f5af3d9afdeaf3
@@ -74,6 +75,7 @@
 
 
 # 正規表現チートシート https://murashun.jp/article/programming/regular-expression.html
+# 正規表現チートシート2 https://and-engineer.com/articles/YR4HsBAAAPDr_BhQ
 
 # 記号のエスケープ
 # s.gsub(/[\?|\!\+]/, '')
@@ -93,6 +95,7 @@
 # 文字数を指定して取得する。 \w アルファベット・数字・アンダーバー、 {n,} 最小文字数
 # string.gsub(/\w{5,}/, &:reverse)
 
+# 正規表現の \1 について https://docs.ruby-lang.org/ja/latest/method/String/i/sub.html
 
 # Integerの & は bitの論理積
 # https://docs.ruby-lang.org/ja/latest/class/Integer.html#I_--26
