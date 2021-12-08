@@ -63,3 +63,23 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.104
+# 7kyu Monotone travel
+
+# def is_monotone(heights)
+#   heights.each_cons(2).all? { |a, b| a <= b }
+# end
+
+# p is_monotone(Array(1..11)) == true
+# p is_monotone([5,5,5,5,5,5,5]) == true
+# p is_monotone([]) == true
+# p is_monotone([1]) == true
+
+# p is_monotone(Array(0..5).collect{|x| -x}) == false
+# p is_monotone(Array(0..45).collect{|x| 40-x}) == false
+
+# heights == heights.sort 一番かんたん
+
+
+# --------------------------------------------------------------------------------------------------
