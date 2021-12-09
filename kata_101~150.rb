@@ -83,3 +83,27 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.105
+# 7kyu Character Counter
+
+# def validate_word(word)
+#   word.downcase.chars.uniq.map { |st| word.downcase.count(st) }.uniq.size == 1
+# end
+
+# p validate_word("abcabc") == true
+# p validate_word("Abcabc") == true
+# p validate_word("AbcabcC") == false
+# p validate_word("AbcCBa") == true
+# p validate_word("pippi") == false
+# p validate_word("?!?!?!") == true
+# p validate_word("abc123") == true
+# p validate_word("abcabcd") == false
+# p validate_word("abc!abc!") == true
+# p validate_word("abc:abc") == false
+# p validate_word("abccabcd") ==  false
+
+# word.chars.group_by(&:upcase).values.uniq(&:count).one? uniqで何度も繰り返し文が発行されるのは良くないと思ったが、one?も内部で繰り返し文を発行していそう。速度はあまり変わらないかも？
+
+
+# --------------------------------------------------------------------------------------------------
