@@ -107,3 +107,49 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.106
+# 7kyu Maximum Multiple
+
+# def max_multiple(divisor, bound)
+  # range = bound.downto(bound - divisor).to_a
+  # range.find { |n| n % divisor == 0 }
+# end
+
+# p max_multiple(2,7) == 6
+# p max_multiple(3,10) == 9
+# p max_multiple(7,17) == 14
+# p max_multiple(10,50) == 50
+# p max_multiple(37,200) == 185
+# p max_multiple(7,100) == 98
+
+# bound - bound % divisor 一番簡単。 bound を divisor で割った余りを引けば自ずと最大公約数になる。
+
+# --------------------------------------------------------------------------------------------------
+
+# no.107
+# 7kyu Reverse a Number
+
+# def reverse_number(n)
+  # n > 0 ? n.digits.join.to_i : n.abs.digits.join.to_i * -1
+# end
+
+# p reverse_number(123) == 321
+# p reverse_number(-123) == -321
+# p reverse_number(1000) == 1
+# p reverse_number(4321234) == 4321234
+# p reverse_number(5) == 5
+# p reverse_number(0) == 0
+# p reverse_number(98989898) == 89898989
+
+# n.abs.digits.join.to_i * (n <=> 0) 一番短い。
+# (n <=> 0) 左が大きければ 1, 等しければ0, 右が大きければ -1 を返す。  https://docs.ruby-lang.org/ja/latest/doc/symref.html#langl
+# a = 10
+# p (a <=> 0)
+# b = -10
+# p (b <=> 0)
+# c = -10
+# p c.abs * 3 * (c <=> 0)
+
+
+# --------------------------------------------------------------------------------------------------
