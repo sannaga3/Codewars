@@ -113,3 +113,18 @@
 # p (b <=> 0)  => -1
 # c = -10
 # p c.abs * 3 * (c <=> 0)  => -30
+
+
+# 先読み、後読みについて https://docs.ruby-lang.org/ja/latest/doc/spec=2fregexp.html#lookahead_lookbehind
+#                    https://qiita.com/kaino5454/items/472238cb8dbeba866a00
+# (?=pat) 肯定先読み
+# (?<=pat) 肯定後読み
+# text = "apple and banana and tomato and lemon tomato"
+# p text.scan(/(?<=and )banana/)        # => ["banana"]
+# p text.scan(/(?<=and )banana|tomato/) # => ["banana", "tomato"]
+# p text.scan(/(?<=and )\w+/)           # => ["banana", "tomato", "lemon"]
+# p text.scan(/tomato(?= and)/)         # => ["tomato"]
+# p text.scan(/tomato|apple(?= and)/)   # => ["apple", "tomato", "tomato"]
+# p text.scan(/(?=and).*(?<=and)/)      # => ["and banana and tomato and"]
+# p text.scan(/(?<=and ).+(?= and)/)    # => ["banana and tomato"]
+# p text.scan(/(?<=and )\w+(?= and)/)   # => ["banana", "tomato"]

@@ -153,3 +153,53 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.108
+# 7kyu Halving Sum
+
+# def halving_sum(n)
+#   m = 0
+#   while n >= 1
+#     m += n
+#     n /= 2
+#   end
+#   m
+# end
+
+# halving_sum(25) == 47
+# halving_sum(127) == 247
+
+# n == 1 ? n : n + halving_sum(n/2) 一番簡単。 n + halving_sum(n/2)で再帰処理ができた。
+
+
+# --------------------------------------------------------------------------------------------------
+
+# no.109
+# 7kyu SevenAte9
+
+# def seven_ate9(str)
+#   str.scan(/797/).first ? seven_ate9(str.gsub(/797/, '77')) : str
+# end
+
+# p seven_ate9('165561786121789797') == '16556178612178977'
+# p seven_ate9('797') == '77'
+# p seven_ate9('7979797') == '7777'
+
+# str.gsub(/(?<=7)9(?=7)/,'') 一番短い。
+# 先読み、後読みについて https://docs.ruby-lang.org/ja/latest/doc/spec=2fregexp.html#lookahead_lookbehind
+#                    https://qiita.com/kaino5454/items/472238cb8dbeba866a00
+# (?=pat) 肯定先読み
+# (?<=pat) 肯定後読み
+
+# text = "apple and banana and tomato and lemon tomato"
+# p text.scan(/(?<=and )banana/)        # => ["banana"]
+# p text.scan(/(?<=and )banana|tomato/) # => ["banana", "tomato"]
+# p text.scan(/(?<=and )\w+/)           # => ["banana", "tomato", "lemon"]
+# p text.scan(/tomato(?= and)/)         # => ["tomato"]
+# p text.scan(/tomato|apple(?= and)/)   # => ["apple", "tomato", "tomato"]
+# p text.scan(/(?=and).*(?<=and)/)      # => ["and banana and tomato and"]
+# p text.scan(/(?<=and ).+(?= and)/)    # => ["banana and tomato"]
+# p text.scan(/(?<=and )\w+(?= and)/)    # => ["banana", "tomato"]
+
+
+# --------------------------------------------------------------------------------------------------
