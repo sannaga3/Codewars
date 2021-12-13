@@ -203,3 +203,22 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.110
+# 7kyu Sum Factorial
+
+# def sum_factorial(lst)
+  # sums = lst.map{ |n| 1 }
+  # lst.each_with_index.map { |n, m| [*(1..n)].each { |o| o == 1 ? sums[m] : sums[m] *= o }}
+  # sums.sum
+# end
+
+# p sum_factorial([4, 6]) == 744
+# p sum_factorial([5, 4, 1]) == 145
+
+# lst.map{|i| (1..i).reduce :* }.sum  一番簡単。
+# reduceで要素全体の掛け算ができる。reduceはinjectのエイリアス
+# p [1, 2, 3].inject(:*) => 6
+
+
+# --------------------------------------------------------------------------------------------------
