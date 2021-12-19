@@ -222,3 +222,17 @@
 
 
 # --------------------------------------------------------------------------------------------------
+
+# no.111
+# 7kyu Printer Errors
+
+# def printer_error(s)
+#   "#{s.size - (s.scan(/([a-m])/).size)}/#{s.size}"
+# end
+
+# printer_error("aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz") == "3/56"
+
+# "#{s.count('n-z')}/#{s.length}" 一番短い
+
+
+# --------------------------------------------------------------------------------------------------
